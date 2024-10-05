@@ -1,14 +1,19 @@
-<div class="text-center" style="height: 65vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-image: url('<%= asset_path("PK-sc01-PAR55031-j_TP_V4.jpg") %>'); background-size: cover; background-position: center; position: relative;">
-    
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);"></div>
+<div class="text-center" style="height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-image: url('<%= asset_path("PK-sc01-PAR55031-j_TP_V4.jpg") %>'); background-size: cover; background-position: center; position: relative;">
+  
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);"></div>
 
   <div style="position: relative; z-index: 1; color: white;">
-     <h1 style="font-family: 'Pacifico', cursive;">Study Share</h1>
+    <h1 style="font-family: 'Pacifico', cursive;">Study Share</h1>
     <p>みんなで頑張ろう！！</p>
+
     <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg mt-3">Let's study</a>
+    <p class="mt-2">お試しの方はこちらから</p>
+    
+    <div class="d-grid gap-2 mt-1"> 
+      <%= button_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class: "btn btn-secondary btn-lg" %>
+    </div>
   </div>
 </div>
-
 
 <section class="container-fluid py-5 text-center">
   <div class="row">
@@ -23,5 +28,3 @@
     </div>
   </div>
 </section>
-
-
