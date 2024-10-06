@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :users do
+    resources :posts
+  end
   devise_for :users
   root to: "homes#top"
   get 'about', to: 'homes#about'
