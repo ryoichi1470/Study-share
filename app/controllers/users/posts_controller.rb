@@ -33,7 +33,7 @@ class Users::PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "投稿が更新されました！"
-      redirect_to @post
+      redirect_to users_post_path(@post)
     else
       render :edit
     end

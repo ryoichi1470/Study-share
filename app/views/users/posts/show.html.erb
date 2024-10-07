@@ -22,8 +22,14 @@
         <% end %>
         <%= link_to '戻る', users_posts_path, class: "btn btn-secondary" %>
       </div>
+       <% if flash[:notice] %>
+          <div class="alert alert-success mt-4 text-center">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
     </div>
-
+    
+    
     <div class="col-md-4 text-center">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
     </div>
