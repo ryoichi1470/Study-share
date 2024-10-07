@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
   get 'about', to: 'homes#about'
-  
   post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  get 'mypage', to: 'users#mypage'
+
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

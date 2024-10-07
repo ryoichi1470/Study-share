@@ -2,6 +2,8 @@ class Users::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :restrict_guest_user, only: [:new, :create, :edit, :update, :destroy]
+
 
   def new
     @post = current_user.posts.build
@@ -55,5 +57,12 @@ class Users::PostsController < ApplicationController
   def correct_user
     # 現在のユーザーが投稿の所有者でない場合、リダイレクト
     redirect_to users_posts_path, alert: "権限がありません。" unless @post.user == current_user
+  end
+
+  # ゲストユーザーの場合、特定のアクションへのアクセスを制限
+  def restrict_guest_user
+    if current_user.guest?
+      redirect_to users_posts_path, alert: "ゲストユーザーはこの操作を実行できません。"
+    end
   end
 end

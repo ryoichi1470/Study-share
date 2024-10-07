@@ -1,4 +1,4 @@
-<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">投稿一覧</h1>
+<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">マイページ</h1>
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
@@ -7,17 +7,24 @@
     </div>
 
     <div class="col-md-4">
+      <div class="user-info mt-5">
+        <h4 class="form-label">ユーザー情報</h4>
+        <p><strong>名前:</strong> <%= current_user.name %></p>
+        <p><strong>メールアドレス:</strong> <%= current_user.email %></p>
+        <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'btn btn-primary mt-3' %>
+      </div>
+
       <div class="post-list mt-5">
+        <h4 class="form-label">投稿一覧</h4>
         <% if @posts.any? %>
           <% @posts.each do |post| %>
             <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><%= post.title %></h5>
                 <p class="card-text"><%= post.text %></p>
-                <p class="text-muted">投稿者: <%= post.user.name %></p> <!-- 投稿者名を表示 -->
-
                 <div class="text-end"> <!-- 右寄せ -->
-                  <%= link_to '詳細', users_post_path(post), class: "btn btn-info" %>
+                  <%= link_to '編集', edit_users_post_path(post), class: "btn btn-warning" %>
+                  <%= link_to '削除', users_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
                 </div>
               </div>
             </div>

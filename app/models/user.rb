@@ -13,4 +13,8 @@ class User < ApplicationRecord
     end
   end
   
+  def guest?
+    email == 'guest@example.com' # ゲストアカウントに設定しているメールアドレス
+  end
+  
 end

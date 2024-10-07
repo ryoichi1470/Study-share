@@ -16,18 +16,12 @@
       </div>
 
       <div class="text-center mt-5">
-        <% if @post.user == current_user %> <!-- 現在のユーザーと投稿のユーザーが一致する場合 -->
+        <% if @post.user == current_user %> 
           <%= link_to '編集', edit_users_post_path(@post), class: "btn btn-warning" %>
           <%= link_to '削除', users_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
         <% end %>
         <%= link_to '戻る', users_posts_path, class: "btn btn-secondary" %>
       </div>
-
-      <% if flash[:notice] %>
-          <div class="alert alert-success mt-4 text-center">
-            <%= flash[:notice] %>
-          </div>
-      <% end %>
     </div>
 
     <div class="col-md-4 text-center">
