@@ -14,7 +14,9 @@
               <div class="card-body">
                 <h5 class="card-title"><%= post.title %></h5>
                 <p class="card-text"><%= post.text %></p>
-                <p class="text-muted">投稿者: <%= post.user.name %></p> <!-- 投稿者名を表示 -->
+                <p class="text-muted">
+                  投稿者: <%= link_to post.user.name, mypage_path(post.user), class: 'link-info' %> <!-- 投稿者名にマイページへのリンクを追加 -->
+                </p>
 
                 <div class="text-end"> <!-- 右寄せ -->
                   <%= link_to '詳細', users_post_path(post), class: "btn btn-info" %>
