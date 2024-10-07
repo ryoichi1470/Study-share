@@ -1,6 +1,6 @@
 <h1 class="text-center my-0" style="background-color: #001f3f; color: white;"><%= @user.name %>のマイページ</h1>
 
-<div class="container-fluid vh-80 d-flex flex-column justify-content-center">
+<div class="container-fluid vh-60 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
@@ -42,5 +42,9 @@
     <div class="col-md-4 text-center">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
     </div>
+  </div>
+
+  <div class="text-center mb-4">
+    <%= link_to '戻る', users_posts_path, class: 'btn btn-secondary' %> <!-- 戻るボタン -->
   </div>
 </div>
