@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :guest_signed_in?
   
   def after_sign_in_path_for(resource)
-    about_path
+    users_posts_path
   end
   
   def after_sign_out_path_for(resource)

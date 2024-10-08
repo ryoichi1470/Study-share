@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   
   get 'mypage', to: 'users#mypage', as: 'mypage'
-  get 'users/:id/mypage', to: 'users#show', as: 'user_mypage' # 他のユーザーのマイページ用
+  get 'users/:id/mypage', to: 'users#show', as: 'user_mypage' 
 
   root to: "homes#top"
   get 'about', to: 'homes#about'

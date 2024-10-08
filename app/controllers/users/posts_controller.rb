@@ -23,11 +23,11 @@ class Users::PostsController < ApplicationController
   end
 
   def show
-    # ここは変更なし
+    
   end
 
   def edit
-    # ここは変更なし
+   
   end
 
   def update
@@ -47,7 +47,7 @@ class Users::PostsController < ApplicationController
   private
 
   def set_post
-    @post = Post.find(params[:id])  # 変更: current_user.postsから外す
+    @post = Post.find(params[:id])  
   end
 
   def post_params

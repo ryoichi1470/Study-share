@@ -1,18 +1,25 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  before_action :check_guest_user, only: [:mypage]
 
   def mypage
-    @user = current_user # 現在のユーザー
-    @posts = @user.posts  # 現在のユーザーの投稿
+    @user = current_user 
+    @posts = @user.posts  
   end
 
   def show
-    @posts = @user.posts # 特定ユーザーの投稿を表示
+    @posts = @user.posts 
   end
 
   private
 
   def set_user
-    @user = User.find(params[:id]) # URLからIDを取得してユーザーを検索
+    @user = User.find(params[:id]) 
+  end
+  
+  def check_guest_user
+    if current_user.guest?
+      redirect_to users_posts_path, alert: "ゲストユーザーはマイページにアクセスできません。"
+    end
   end
 end

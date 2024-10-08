@@ -1,4 +1,9 @@
 <h1 class="text-center my-0" style="background-color: #001f3f; color: white;">投稿一覧</h1>
+<% if flash[:alert] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
@@ -15,7 +20,7 @@
                 <h5 class="card-title"><%= post.title %></h5>
                 <p class="card-text"><%= post.text %></p>
                 <p class="text-muted">
-                   投稿者: <%= link_to post.user.name, user_mypage_path(post.user.id), class: 'text-muted' %> <!-- 投稿者名にマイページへのリンクを追加 -->
+                   投稿者: <%= link_to post.user.name, user_mypage_path(post.user.id), class: 'text-muted' %> 
                 </p>
 
                 <div class="text-end"> <!-- 右寄せ -->
