@@ -1,4 +1,4 @@
-class Users::SessionsController < ApplicationController
+class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
@@ -8,6 +8,10 @@ class Users::SessionsController < ApplicationController
   def destroy
     sign_out(current_user)
     redirect_to root_path, notice: 'ログアウトしました。'
+  end
+  
+  def new
+    super
   end
   
 end
