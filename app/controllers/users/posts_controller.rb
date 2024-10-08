@@ -55,11 +55,10 @@ class Users::PostsController < ApplicationController
   end
  
   def correct_user
-    # 現在のユーザーが投稿の所有者でない場合、リダイレクト
     redirect_to users_posts_path, alert: "権限がありません。" unless @post.user == current_user
   end
 
-  # ゲストユーザーの場合、特定のアクションへのアクセスを制限
+  
   def restrict_guest_user
     if current_user.guest?
       redirect_to users_posts_path, alert: "ゲストユーザーはこの操作を実行できません。"
