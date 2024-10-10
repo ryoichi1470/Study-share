@@ -11,7 +11,8 @@
         <h4 class="form-label">ユーザー情報</h4>
         <p><strong>名前:</strong> <%= @user.name %></p>
         <p><strong>メールアドレス:</strong> <%= @user.email %></p>
-        <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'btn btn-primary mt-3' %>
+        <%= link_to 'ユーザー編集', edit_user_registration_path(current_user), class: "btn btn-warning" %>
+
       </div>
 
       <div class="post-list mt-5">
@@ -22,7 +23,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= post.title %></h5>
                 <p class="card-text"><%= post.text %></p>
-                <div class="text-end"> <!-- 右寄せ -->
+                <div class="text-end"> 
                   <%= link_to '編集', edit_users_post_path(post), class: "btn btn-warning" %>
                   <%= link_to '削除', users_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
                 </div>

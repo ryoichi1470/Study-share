@@ -3,14 +3,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  
-  
+
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
-  
+
   namespace :users do
-    resources :posts
+    resources :posts  # ポストに対するルーティング
   end
 
   get 'mypage', to: 'users#mypage', as: 'mypage'

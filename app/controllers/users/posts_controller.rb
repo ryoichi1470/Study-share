@@ -1,6 +1,6 @@
 class Users::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :show, :create, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :restrict_guest_user, only: [:new, :create, :edit, :update, :destroy]
 
@@ -41,7 +41,7 @@ class Users::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to users_posts_path, notice: '投稿が削除されました。'
+    redirect_to mypage_path, notice: '投稿が削除されました。'
   end
 
   private
