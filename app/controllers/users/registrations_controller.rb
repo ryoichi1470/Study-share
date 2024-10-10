@@ -8,20 +8,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
   
   def edit
+    @user = current_user
     super
   end
   
   def after_update_path_for(resource)
-    mypage_path(resource)  
+    mypage_path
   end
   
   private
 
   def authorize_user!
-    if current_user.nil? || (params[:id].to_i != current_user.id)
-      redirect_to mypage_path, alert: "このページにはアクセスできません。"
+    @user = User.find(params[:format])
+    unless @user == current_user
+      redirect_back(fallback_location: mypage_path)
     end
   end
 end
-
-
