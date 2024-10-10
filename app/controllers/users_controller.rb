@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :authorize_user!, only: [:edit]
   before_action :check_guest_user, only: [:mypage]
 
   def mypage
@@ -15,6 +16,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id]) 
+  end
+  
+  def authorize_user!
+    redirect_to mypage_path unless @user == current_user
   end
   
   def check_guest_user

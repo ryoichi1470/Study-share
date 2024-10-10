@@ -30,17 +30,18 @@
             <%= f.text_area :text, required: true, class: "form-control", rows: 5 %>
           </div>
 
-          <div class="text-center">
-            <%= f.submit '更新', class: "btn btn-primary" %>
+        
+          <div class="d-flex justify-content-center mt-3">
+            <%= f.submit '更新', class: "btn btn-primary mr-3" %>
+            <%= button_to '削除', users_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
           </div>
+
         <% end %>
       </div>
 
       <div class="text-center mt-5">
         <%= link_to '戻る', users_post_path(@post), class: "btn btn-secondary" %>
       </div>
-
-     
     </div>
 
     <div class="col-md-4 text-center">
