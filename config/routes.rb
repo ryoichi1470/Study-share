@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    resources :posts  
+    resources :posts do
+      resources :comments, only: [:create, :edit, :update, :destroy] 
+    end
   end
 
   get 'mypage', to: 'users#mypage', as: 'mypage'
@@ -18,5 +20,4 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get 'about', to: 'homes#about'
   get "search" => "searches#search"
-
 end
