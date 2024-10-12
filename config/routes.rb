@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-    resources :posts  # ポストに対するルーティング
+    resources :posts  
   end
 
   get 'mypage', to: 'users#mypage', as: 'mypage'
@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   get 'about', to: 'homes#about'
+  get "search" => "searches#search"
+
 end

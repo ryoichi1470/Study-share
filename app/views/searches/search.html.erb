@@ -1,0 +1,56 @@
+<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">検索結果</h1>
+
+<% if flash[:alert] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div class="container-fluid vh-80 d-flex flex-column justify-content-center">
+  <div class="row flex-grow-1">
+    <div class="col-md-4 text-center">
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+    </div>
+
+    <div class="col-md-4">
+      <div class="search-results mt-5">
+        <h2>ユーザーの検索結果</h2>
+        <% if @users.any? %>
+          <% @users.each do |user| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to user.name, user_mypage_path(user), class: 'text-dark' %></h5>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p>該当するユーザーが見つかりませんでした。</p>
+        <% end %>
+
+        <h2>投稿の検索結果</h2>
+        <% if @posts.any? %>
+          <% @posts.each do |post| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= post.title %></h5>
+                <p class="card-text"><%= post.text %></p>
+                <p class="text-muted">
+                  投稿者: <%= link_to post.user.name, user_mypage_path(post.user.id), class: 'text-muted' %>
+                </p>
+                <div class="text-end"> <!-- 右寄せ -->
+                  <%= link_to '詳細', users_post_path(post), class: "btn btn-info" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p>該当する投稿が見つかりませんでした。</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+    </div>
+  </div>
+</div>

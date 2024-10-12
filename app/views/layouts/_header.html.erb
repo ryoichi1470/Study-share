@@ -1,42 +1,57 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #001f3f;"> 
-  <div class="container">
-    <a class="navbar-brand" href="<%= root_path %>" style="font-family: 'Brush Script MT', cursive;">Study Share</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav d-flex justify-content-between w-100">
-        <% if user_signed_in? %>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= about_path %>">About</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= users_posts_path %>">投稿一覧</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= mypage_path %>">マイページ</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= new_users_post_path %>">新規投稿</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
-          </li>
-        <% else %>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= root_path %>">Top</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= about_path %>">About</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= new_user_registration_path %>">新規登録</a>
-          </li>
-          <li class="nav-item flex-fill text-center">
-            <a class="nav-link" style="color: #f5f5dc;" href="<%= new_user_session_path %>">ログイン</a>
-          </li>
-        <% end %>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #001f3f; margin: 0;"> 
+  <div class="container-fluid d-flex justify-content-between"> <!-- ロゴと検索窓の配置を制御するためにd-flexを追加 -->
+    
+    <!-- ロゴを左端に配置 -->
+    <a class="navbar-brand" href="<%= root_path %>" style="font-family: 'Brush Script MT', cursive; margin-left: 1rem;">Study Share</a>
+
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav d-flex justify-content-evenly w-100">
+          <% if user_signed_in? %>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= about_path %>">About</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= users_posts_path %>">投稿一覧</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= mypage_path %>">マイページ</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= new_users_post_path %>">新規投稿</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
+            </li>
+          <% else %>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= root_path %>">Top</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= about_path %>">About</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= new_user_registration_path %>">新規登録</a>
+            </li>
+            <li class="nav-item flex-fill text-center">
+              <a class="nav-link" style="color: #f5f5dc;" href="<%= new_user_session_path %>">ログイン</a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+
+    <!-- 検索フォームを右端に配置 -->
+    <% if user_signed_in? %>
+      <form class="d-flex" action="<%= search_path %>" method="get" style="margin-right: 1rem;">
+        <input class="form-control me-2" type="search" name="query" placeholder="キーワード検索" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit" style="white-space: nowrap;">検索</button>
+      </form>
+    <% end %>
+    
   </div>
 </nav>
