@@ -11,11 +11,28 @@ class UsersController < ApplicationController
   def show
     @posts = @user.posts 
   end
+  
+  def create
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.build(comment_params)
+    @comment.user = current_user
+  
+    if @comment.save
+      redirect_to users_post_path(@post), notice: 'コメントが作成されました。'
+    else
+      redirect_to users_post_path(@post), alert: 'コメントの作成に失敗しました。'
+    end
+  end
+
 
   private
 
   def set_user
     @user = User.find(params[:id]) 
+  end
+  
+  def comment_params
+    params.require(:comment).permit(:content)
   end
   
   def authorize_user!
