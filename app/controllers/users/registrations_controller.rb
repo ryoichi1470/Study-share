@@ -20,6 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def correct_user
+    return if action_name == 'edit'
     unless current_user.id == params[:id].to_i
       redirect_to mypage_path(current_user)
     end
