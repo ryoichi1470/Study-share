@@ -14,37 +14,41 @@
 
     <div class="col-md-4">
       <div class="search-results mt-5">
-        <h2>ユーザーの検索結果</h2>
-        <% if @users.any? %>
-          <% @users.each do |user| %>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title"><%= link_to user.name, user_mypage_path(user), class: 'text-dark' %></h5>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <p>該当するユーザーが見つかりませんでした。</p>
-        <% end %>
-
-        <h2>投稿の検索結果</h2>
-        <% if @posts.any? %>
-          <% @posts.each do |post| %>
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title"><%= post.title %></h5>
-                <p class="card-text"><%= post.text %></p>
-                <p class="text-muted">
-                  投稿者: <%= link_to post.user.name, user_mypage_path(post.user.id), class: 'text-muted' %>
-                </p>
-                <div class="text-end"> <!-- 右寄せ -->
-                  <%= link_to '詳細', users_post_path(post), class: "btn btn-info" %>
+        <% if params[:search_type] == 'users' %>
+          <h2>ユーザーの検索結果</h2>
+          <% @users ||= [] %> 
+          <% if @users.any? %>
+            <% @users.each do |user| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to user.name, user_mypage_path(user), class: 'text-dark' %></h5>
                 </div>
               </div>
-            </div>
+            <% end %>
+          <% else %>
+            <p>該当するユーザーが見つかりませんでした。</p>
           <% end %>
-        <% else %>
-          <p>該当する投稿が見つかりませんでした。</p>
+        <% elsif params[:search_type] == 'posts' %>
+          <h2>投稿の検索結果</h2>
+          <% @posts ||= [] %> 
+          <% if @posts.any? %>
+            <% @posts.each do |post| %>
+              <div class="card mb-3">
+                <div class="card-body">
+                  <h5 class="card-title"><%= post.title %></h5>
+                  <p class="card-text"><%= post.text %></p>
+                  <p class="text-muted">
+                    投稿者: <%= link_to post.user.name, user_mypage_path(post.user.id), class: 'text-muted' %>
+                  </p>
+                  <div class="text-end"> <!-- 右寄せ -->
+                    <%= link_to '詳細', users_post_path(post), class: "btn btn-info" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p>該当する投稿が見つかりませんでした。</p>
+          <% end %>
         <% end %>
       </div>
     </div>
