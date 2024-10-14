@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :edit, :update, :destroy] 
     end
   end
+  
+  namespace :admin do
+    resources :users, only: [:index, :destroy]
+    resources :comments, only: [:index, :destroy]
+  end
 
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/:id/mypage', to: 'users#show', as: 'user_mypage'

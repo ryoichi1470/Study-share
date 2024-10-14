@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
-  before_action :authorize_user!, only: [:edit]
   before_action :check_guest_user, only: [:mypage]
+  before_action :correct_user, only: [:edit, :update]
 
   def mypage
     @user = current_user 
@@ -11,19 +11,18 @@ class UsersController < ApplicationController
   def show
     @posts = @user.posts 
   end
+
+  def edit
   
-  def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
-    @comment.user = current_user
-  
-    if @comment.save
-      redirect_to users_post_path(@post), notice: 'コメントが作成されました。'
-    else
-      redirect_to users_post_path(@post), alert: 'コメントの作成に失敗しました。'
-    end
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to mypage_path, notice: 'プロフィールが更新されました。'
+    else
+      render :edit
+    end
+  end
 
   private
 
@@ -31,12 +30,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) 
   end
   
-  def comment_params
-    params.require(:comment).permit(:content)
+  def user_params
+    params.require(:user).permit(:name, :email) 
   end
   
-  def authorize_user!
-    redirect_to mypage_path unless @user == current_user
+  def correct_user
+    unless current_user == @user || current_user.admin?
+      redirect_to mypage_path(current_user), alert: "編集権限がありません。"
+    end
   end
   
   def check_guest_user
@@ -44,4 +45,7 @@ class UsersController < ApplicationController
       redirect_to users_posts_path, alert: "ゲストユーザーはマイページにアクセスできません。"
     end
   end
+  
+
+  
 end
