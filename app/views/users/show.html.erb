@@ -14,6 +14,9 @@
         <% if current_user == @user %>
           <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'btn btn-primary mt-3' %>
         <% end %>
+        <% if current_user.admin? %>
+          <%= link_to 'アカウントを削除', admin_user_path(@user), method: :delete, data: { confirm: '本当にアカウントを削除しますか？' }, class: 'btn btn-danger mt-3' %>
+        <% end %>
       </div>
 
       <div class="post-list mt-5">

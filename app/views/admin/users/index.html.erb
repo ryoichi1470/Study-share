@@ -4,6 +4,7 @@
   <table class="table table-dark table-hover table-bordered">
     <thead>
       <tr>
+        <th scope="col">ID</th>
         <th scope="col">名前</th>
         <th scope="col">メールアドレス</th>
         <th scope="col"></th>
@@ -12,7 +13,8 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= user.name %></td>
+          <td><%= user.id %></td>
+          <td><%= link_to user.name, user_mypage_path(user) %></td>
           <td><%= user.email %></td>
           <td>
             <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>

@@ -14,6 +14,9 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <% if user_signed_in? %>
+      <%= render 'share/search_form' %>
+    <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
