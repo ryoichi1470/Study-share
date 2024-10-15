@@ -1,5 +1,5 @@
 class Users::CommentsController < ApplicationController
-  before_action :set_post
+  before_action :set_post, only: [:edit]
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def create

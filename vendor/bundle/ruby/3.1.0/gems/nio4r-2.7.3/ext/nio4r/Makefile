@@ -13,12 +13,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /home/ec2-user/.rbenv/versions/3.1.2/include/ruby-3.1.0
+topdir = /home/ec2-user/.rvm/rubies/ruby-3.1.2/include/ruby-3.1.0
 hdrdir = $(topdir)
-arch_hdrdir = /home/ec2-user/.rbenv/versions/3.1.2/include/ruby-3.1.0/x86_64-linux
+arch_hdrdir = /home/ec2-user/.rvm/rubies/ruby-3.1.2/include/ruby-3.1.0/x86_64-linux
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/home/ec2-user/.rbenv/versions/3.1.2
+prefix = $(DESTDIR)/home/ec2-user/.rvm/rubies/ruby-3.1.2
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -32,8 +32,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20241009-14492-mjolhi
-sitelibdir = $(DESTDIR)./.gem.20241009-14492-mjolhi
+sitearchdir = $(DESTDIR)./.gem.20241015-126488-xl8en7
+sitelibdir = $(DESTDIR)./.gem.20241015-126488-xl8en7
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
