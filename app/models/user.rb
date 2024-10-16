@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy 
   has_many :groups, dependent: :destroy
+  has_many :group_memberships
+  has_many :groups, through: :group_memberships
+
+  
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64

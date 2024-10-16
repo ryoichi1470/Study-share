@@ -32,24 +32,25 @@
         <% if @groups.any? %>
           <% @groups.each do |group| %>
             <div class="card mb-3">
-              <div class="card-body">
+             <div class="card-body">
                 <h5 class="card-title"><%= link_to group.name, group, class: "text-dark text-decoration-none" %></h5>
                 <p class="card-text">テーマ: <%= group.theme %></p>
                 <p class="card-text">ルール: <%= group.rules %></p>
                 <p class="text-muted">
-                   作成者: <%= link_to group.user.name, user_mypage_path(group.user.id), class: 'text-muted' %> 
+                  作成者: <%= link_to group.creator.name, user_mypage_path(group.creator.id), class: 'text-muted' %>
                 </p>
-
-                <% if current_user != group.user && !current_user.group_memberships.exists?(group: group) %>
+              
+                <% if current_user != group.creator && !current_user.group_memberships.exists?(group: group) %>
                   <div class="text-end">
                     <%= button_to '参加申請', group_group_memberships_path(group), method: :post, class: "btn btn-primary" %>
                   </div>
-                <% elsif current_user == group.user %>
+                <% elsif current_user == group.creator %>
                   <div class="text-end">
                     <%= link_to '削除', group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
                   </div>
                 <% end %>
               </div>
+
             </div>
           <% end %>
         <% else %>

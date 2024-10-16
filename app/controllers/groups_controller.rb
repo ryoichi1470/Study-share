@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
-  before_action :set_group, only: [:show, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:search].present?
@@ -11,6 +11,8 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @pending_memberships = @group.group_memberships.pending if current_user == @group.creator
+    @members = @group.members 
   end
 
   def new
@@ -20,7 +22,7 @@ class GroupsController < ApplicationController
   def create
     @group = current_user.groups.build(group_params)
     if @group.save
-      redirect_to groups_path, notice: 'グループが作成されました。'
+      redirect_to group_path(@group), notice: 'グループが作成されました。' 
     else
       render :new
     end

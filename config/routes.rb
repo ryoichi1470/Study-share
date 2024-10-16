@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'group_memberships/create'
+  get 'group_memberships/update'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -18,7 +20,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
   end
-  resources :groups
+  resources :groups do
+    resources :group_memberships, only: [:create, :update]
+  end  
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/:id/mypage', to: 'users#show', as: 'user_mypage'
 

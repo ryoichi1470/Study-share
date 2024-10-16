@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header text-center" style="background-color: #001f3f; color: white;">
+      <h2><%= @group.name %> グループの詳細</h2>
+    </div>
+    <div class="card-body">
+      <h5>テーマ</h5>
+      <p><%= @group.theme %></p>
+      <hr>
+      <h5>ルール</h5>
+      <p><%= @group.rules %></p>
+      <hr>
+      <h5>作成者</h5>
+      <p><%= link_to @group.creator.name, user_mypage_path(@group.creator.id), class: "text-dark" %></p> 
+      <hr>
+      <h4>メンバー</h4>
+      <% if @members.any? %>
+        <ul>
+          <% @members.each do |member| %>
+            <li><%= link_to member.name, user_mypage_path(member.id), class: "text-dark" %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>メンバーはいません。</p>
+      <% end %>
+
+      <% unless current_user.groups.include?(@group) %>
+        <%= button_to '参加申請', group_group_memberships_path(@group), method: :post %>
+      <% else %>
+        <p>このグループには既に参加しています。</p>
+      <% end %>
+      
+      <% if current_user == @group.creator %>
+        <h3>参加申請一覧</h3>
+        <ul>
+          <% @pending_memberships.each do |membership| %>
+            <li>
+              <%= membership.user.name %>
+              <%= button_to '承認', group_group_membership_path(@group, membership, status: :approved), method: :patch %>
+              <%= button_to '拒否', group_group_membership_path(@group, membership, status: :rejected), method: :patch %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <% if current_user == @group.creator %>
+        <%= link_to 'グループ削除', @group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mt-3 text-center">
+    <%= link_to 'グループ一覧に戻る', groups_path, class: "btn btn-secondary" %>
+  </div>
+</div>
