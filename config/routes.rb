@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
   end
-
+  resources :groups
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/:id/mypage', to: 'users#show', as: 'user_mypage'
 

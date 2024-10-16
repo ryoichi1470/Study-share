@@ -1,0 +1,54 @@
+<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">グループ一覧</h1>
+
+<% if flash[:alert] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<div class="container-fluid vh-80 d-flex flex-column justify-content-center">
+  <div class="row">
+    <div class="col-md-12 text-center mt-3">
+      <% if user_signed_in? %>
+        <%= link_to 'グループ作成', new_group_path, class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row flex-grow-1">
+    <div class="col-md-4 text-center">
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+    </div>
+
+    <div class="col-md-4">
+      <div class="group-list mt-5">
+        <% if @groups.any? %>
+          <% @groups.each do |group| %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to group.name, group, class: "text-dark text-decoration-none" %></h5>
+                <p class="card-text">テーマ: <%= group.theme %></p>
+                <p class="card-text">ルール: <%= group.rules %></p>
+                <p class="text-muted">
+                   作成者: <%= link_to group.user.name, user_mypage_path(group.user.id), class: 'text-muted' %> 
+                </p>
+
+                <% if current_user == group.user %>
+                  <div class="text-end">
+                    <%= link_to '削除', group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <p>グループはまだありません。</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+    </div>
+  </div>
+</div>
