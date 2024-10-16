@@ -27,12 +27,16 @@
           <div class="form-group">
             <%= form.text_area :content, rows: 4, class: "form-control", placeholder: "コメントを入力してください" %>
           </div>
-          <%= form.submit "コメントを投稿する", class: "btn btn-primary" %>
+          <%= form.submit "コメントを投稿する", class: "btn btn-primary mb-2" %>
         <% end %>
       <% else %>
         <p class="text-danger">ゲストユーザーはコメントを投稿できません。</p>
       <% end %>
-      
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
      <div class="comments mt-4">
         <% @post.comments.each do |comment| %>
           <% if comment.id.present? %> 

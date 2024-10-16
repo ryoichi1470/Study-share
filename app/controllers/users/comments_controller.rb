@@ -5,13 +5,15 @@ class Users::CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
-
+  
     if @comment.save
       redirect_to users_post_path(@post), notice: 'コメントが作成されました。'
     else
-      redirect_to users_post_path(@post), alert: 'コメントの作成に失敗しました。'
+      flash[:alert] = @comment.errors.full_messages.to_sentence
+      redirect_to users_post_path(@post)
     end
   end
+
 
   def edit
     set_post

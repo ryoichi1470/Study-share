@@ -11,7 +11,7 @@
         <h4 class="form-label">ユーザー情報</h4>
         <p><strong>名前:</strong> <%= @user.name %></p>
         <p><strong>メールアドレス:</strong> <%= @user.email %></p>
-        <%= link_to 'ユーザー編集', edit_user_registration_path(current_user), class: "btn btn-warning" %>
+        <%= link_to 'ユーザー編集', edit_user_registration_path, class: "btn btn-warning" %>
         <% if current_user.admin? %>
           <h4 class="mt-4">管理者メニュー</h4>
           <%= link_to 'コメント一覧', admin_comments_path, class: 'btn btn-primary' %>
