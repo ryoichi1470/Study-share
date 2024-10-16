@@ -1,4 +1,4 @@
-<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">グループ一覧</h1>
+<h1 class="text-center my-0 " style="background-color: #001f3f; color: white;">グループ一覧</h1>
 
 <% if flash[:alert] %>
   <div class="alert alert-warning" role="alert">
@@ -6,11 +6,18 @@
   </div>
 <% end %>
 
-<div class="container-fluid vh-80 d-flex flex-column justify-content-center">
+<div class="container-fluid vh-80 d-flex flex-column justify-content-center p-0">
   <div class="row">
-    <div class="col-md-12 text-center mt-3">
-      <% if user_signed_in? %>
-        <%= link_to 'グループ作成', new_group_path, class: "btn btn-primary" %>
+    <div class="col-md-12 text-center mb-3">
+      <%= form_with(url: groups_path, method: :get, local: true) do %>
+        <div class="input-group justify-content-center" style="background-color: #001f3f;"> <!-- 背景色を追加 -->
+          <div class="col-md-3">  
+            <%= text_field_tag :search, params[:search], placeholder: 'グループ名またはテーマを検索', class: 'form-control' %>
+          </div>
+          <div class="input-group-append">
+            <%= submit_tag '検索', class: 'btn btn-outline-secondary' %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
@@ -33,7 +40,11 @@
                    作成者: <%= link_to group.user.name, user_mypage_path(group.user.id), class: 'text-muted' %> 
                 </p>
 
-                <% if current_user == group.user %>
+                <% if current_user != group.user && !current_user.group_memberships.exists?(group: group) %>
+                  <div class="text-end">
+                    <%= button_to '参加申請', group_group_memberships_path(group), method: :post, class: "btn btn-primary" %>
+                  </div>
+                <% elsif current_user == group.user %>
                   <div class="text-end">
                     <%= link_to '削除', group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
                   </div>
@@ -49,6 +60,14 @@
 
     <div class="col-md-4 text-center">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center mt-3 mb-2">
+      <% if user_signed_in? %>
+        <%= link_to 'グループ作成', new_group_path, class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
