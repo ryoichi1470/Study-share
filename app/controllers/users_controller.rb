@@ -17,10 +17,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if @user.update_with_password(user_params)
+      bypass_sign_in(@user)
       redirect_to mypage_path, notice: 'プロフィールが更新されました。'
     else
-      render :edit
+      flash[:alert] = '入力にエラーがあります。再度確認してください。'
+      redirect_to edit_user_registration_path 
     end
   end
 
