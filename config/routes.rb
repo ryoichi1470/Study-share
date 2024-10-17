@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'groups/index'
+    get 'groups/destroy'
+  end
   get 'group_memberships/create'
   get 'group_memberships/update'
   
@@ -20,6 +24,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :destroy]
     resources :comments, only: [:index, :destroy]
+    resources :groups, only: [:index, :destroy]
   end
 
   resources :groups do

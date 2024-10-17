@@ -1,0 +1,60 @@
+<h1 class="text-center" style="color: #ffffff; background-color: #343a40; padding: 20px;">グループ管理</h1>
+
+<div class="container mt-4">
+  <table class="table table-dark table-hover table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">グループ名</th>
+        <th scope="col">テーマ</th>
+        <th scope="col">ルール</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td><%= link_to group.name, group_path(group), class: "text-light" %></td>
+          <td><%= group.theme %></td>
+          <td><%= group.rules %></td>
+          <td>
+            <%= link_to '削除', admin_group_path(group), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center mt-4 mb-4">
+    <%= link_to '戻る', mypage_path, class: 'btn btn-secondary' %>
+  </div>
+</div>
+
+<style>
+  body {
+    background-color: #1c1c1c;  
+  }
+  h1 {
+    background-color: #343a40;  
+    border-radius: 5px;         
+  }
+  table {
+    background-color: #2c2f33;  
+    color: #ffffff;             
+  }
+  th, td {
+    text-align: center;         
+  }
+  .btn-danger {
+    background-color: #dc3545; 
+    border: none;               
+  }
+  .btn-danger:hover {
+    background-color: #c82333;  
+  }
+  .btn-secondary {
+    background-color: #6c757d;  
+    border: none;               
+  }
+  .btn-secondary:hover {
+    background-color: #5a6268;  
+  }
+</style>
