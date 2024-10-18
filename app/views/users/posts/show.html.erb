@@ -8,17 +8,24 @@
 
     <div class="col-md-4">
       <div class="post-detail mt-5">
-        <h4 class="form-label">タイトル</h4>
+        <h5 class="form-label">タイトル</h5>
+        <hr>
         <p><%= @post.title %></p>
 
-        <h4 class="form-label mt-3">テキスト</h4>
+        <h5 class="form-label mt-3">テキスト</h5>
+        <hr>
         <p><%= @post.text %></p>
 
-        <h4 class="form-label mt-3">投稿者</h4>
+        <h5 class="form-label mt-3">投稿者</h5>
+        <hr>
         <p class="text-muted">
           投稿者: <%= link_to @post.user.name, user_mypage_path(@post.user.id), class: 'text-muted' %> 
         </p>
       </div>
+      <div id="favorite_btn_<%= @post.id %>">
+        <%= render "users/favorites/btn", post: @post %>
+      </div>
+
 
       <h2 class="mt-4">コメント</h2>
 

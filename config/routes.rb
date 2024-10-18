@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :posts do
+      resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy] 
     end
   end
@@ -34,8 +35,12 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/:id/mypage', to: 'users#show', as: 'user_mypage'
 
-  # ここで、ユーザーの編集ルートを追加
+  
   resources :users, only: [:edit, :update]
+  
+  # resources :posts do
+  #   resource :favorites, only: [:create, :destroy]
+  # end
 
   root to: 'homes#top'
   get 'about', to: 'homes#about'
