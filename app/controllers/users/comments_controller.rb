@@ -5,13 +5,7 @@ class Users::CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
-  
-    if @comment.save
-      redirect_to users_post_path(@post), notice: 'コメントが作成されました。'
-    else
-      flash[:alert] = @comment.errors.full_messages.to_sentence
-      redirect_to users_post_path(@post)
-    end
+    @comment.save
   end
 
 
@@ -30,7 +24,6 @@ class Users::CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to users_post_path(@post), notice: 'コメントが削除されました。'
   end
 
   private

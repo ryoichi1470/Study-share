@@ -25,39 +25,17 @@
       <div id="favorite_btn_<%= @post.id %>">
         <%= render "users/favorites/btn", post: @post %>
       </div>
+      <div id="comment_counter" style="mt-3">
+        <%= render "users/comments/counter", post: @post %>
+      </div>
 
 
       <h2 class="mt-4">コメント</h2>
-
-      <% if !current_user.guest? %>
-        <%= form_with(model: [@post, @post.comments.build], local: true, url: users_post_comments_path(@post)) do |form| %>
-          <div class="form-group">
-            <%= form.text_area :content, rows: 4, class: "form-control", placeholder: "コメントを入力してください" %>
-          </div>
-          <%= form.submit "コメントを投稿する", class: "btn btn-primary mb-2" %>
-        <% end %>
-      <% else %>
-        <p class="text-danger">ゲストユーザーはコメントを投稿できません。</p>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="alert alert-danger">
-          <%= flash[:alert] %>
+      <%= render "users/comments/form", post: @post, comment: @comment %>
+      
+       <div id="comment_index">
+          <%= render "users/comments/index", post: @post %>
         </div>
-      <% end %>
-     <div class="comments mt-4">
-        <% @post.comments.each do |comment| %>
-          <% if comment.id.present? %> 
-            <div class="comment border rounded p-2 mb-2">
-              <strong><%= comment.user.present? ? comment.user.name : '匿名ユーザー' %></strong>
-              <p><%= comment.content %></p>
-              <% if comment.user == current_user && !current_user.guest? %>
-                <%= link_to '編集', edit_users_post_comment_path(@post, comment) %>
-                <%= link_to '削除', users_post_comment_path(@post, comment), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
 
       <div class="text-center mt-5">
         <% if @post.user == current_user %> 

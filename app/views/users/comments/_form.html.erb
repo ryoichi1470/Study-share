@@ -1,0 +1,15 @@
+<% if !current_user.guest? %>
+  <%= form_with(model: [post, post.comments.build], local: false, url: users_post_comments_path(post)) do |form| %>
+    <div class="form-group">
+      <%= form.text_area :content, rows: 4, class: "form-control", placeholder: "コメントを入力してください", id: "comment_textarea" %>
+    </div>
+    <%= form.submit "コメントを投稿する", class: "btn btn-primary mb-2" %>
+  <% end %>
+  <% else %>
+    <p class="text-danger">ゲストユーザーはコメントを投稿できません。</p>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+<% end %>

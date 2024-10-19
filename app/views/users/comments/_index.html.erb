@@ -1,0 +1,14 @@
+<div class="comments mt-4">
+    <% post.comments.each do |comment| %>
+      <% if comment.id.present? %> 
+        <div class="comment border rounded p-2 mb-2">
+          <strong><%= comment.user.present? ? comment.user.name : '匿名ユーザー' %></strong>
+          <p><%= comment.content %></p>
+          <% if comment.user == current_user && !current_user.guest? %>
+            <%= link_to '編集', edit_users_post_comment_path(post, comment) %>
+            <%= link_to '削除', users_post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, remote: true %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+</div>
