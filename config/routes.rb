@@ -37,6 +37,11 @@ Rails.application.routes.draw do
 
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/:id/mypage', to: 'users#show', as: 'user_mypage'
+  
+  resources :conversations, only: [:index, :create, :show] do
+    resources :direct_messages, only: [:create]
+  end
+
 
   
   resources :users, only: [:edit, :update]
