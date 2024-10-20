@@ -41,7 +41,7 @@ class Users::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to mypage_path, notice: '投稿が削除されました。'
+    redirect_to users_posts_path, notice: '投稿が削除されました。'
   end
 
   private

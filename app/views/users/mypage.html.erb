@@ -9,9 +9,18 @@
     <div class="col-md-4">
       <div class="user-info mt-5">
         <h4 class="form-label">ユーザー情報</h4>
-        <p><strong>名前:</strong> <%= @user.name %></p>
-        <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+        <div class="row">
+          <p><strong>名前:</strong> <%= @user.name %></p>
+        </div>
+        <div class="row">
+          <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+        </div>
+       <div class="row">
+        <p><strong>フォロー：</strong><%= link_to @user.followings.count, users_followings_path(user_id: @user.id) %></p>
+        <p style="margin-left: 10px;"><strong>フォロワー：</strong><%= link_to @user.followers.count, users_followers_path(user_id: @user.id) %></p>
+      </div>
         <%= link_to 'ユーザー編集', edit_user_registration_path, class: "btn btn-warning" %>
+        
         <% if current_user.admin? %>
           <h4 class="mt-4">管理者メニュー</h4>
           <%= link_to 'コメント一覧', admin_comments_path, class: 'btn btn-primary' %>

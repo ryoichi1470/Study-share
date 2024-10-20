@@ -20,6 +20,9 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :edit, :update, :destroy] 
     end
+    resource :relationships, only: [:create, :destroy]
+      get ":user_id/followings" => "relationships#followings", as: "followings"
+      get ":user_id/followers" => "relationships#followers", as: "followers"
   end
 
   namespace :admin do

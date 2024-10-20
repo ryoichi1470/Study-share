@@ -7,17 +7,29 @@
     </div>
 
     <div class="col-md-4">
-      <div class="user-info mt-5">
-        <h4 class="form-label">ユーザー情報</h4>
-        <p><strong>名前:</strong> <%= @user.name %></p>
-        <p><strong>メールアドレス:</strong> <%= @user.email %></p>
-        <% if current_user == @user %>
-          <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'btn btn-primary mt-3' %>
-        <% end %>
-        <% if current_user.admin? %>
-          <%= link_to 'アカウントを削除', admin_user_path(@user), method: :delete, data: { confirm: '本当にアカウントを削除しますか？' }, class: 'btn btn-danger mt-3' %>
-        <% end %>
-      </div>
+      <div class="card mt-5"> 
+        <div class="card-body">
+          <h4 class="form-label d-flex justify-content-between align-items-center"> <!-- Flexboxを使って横並び -->
+            ユーザー情報
+            <% if current_user != @user %>
+              <%= render "users/relationships/btn", user: @user, options: { class: "btn btn-primary" } %> <!-- フォローボタン -->
+            <% end %>
+          </h4>
+          <hr>
+          <div class="row">
+            <div class="col-md-8">
+              <p><strong>名前:</strong> <%= @user.name %></p>
+            </div>
+          </div>
+          <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+          <% if current_user == @user %>
+            <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'btn btn-primary mt-3' %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to 'アカウントを削除', admin_user_path(@user), method: :delete, data: { confirm: '本当にアカウントを削除しますか？' }, class: 'btn btn-danger mt-3' %>
+          <% end %>
+        </div>
+      </div> 
 
       <div class="post-list mt-5">
         <h4 class="form-label">投稿一覧</h4>
@@ -27,7 +39,7 @@
               <div class="card-body">
                 <h5 class="card-title"><%= post.title %></h5>
                 <p class="card-text"><%= post.text %></p>
-                <div class="text-end"> <!-- 右寄せ -->
+                <div class="text-end"> 
                   <% if current_user == @user %>
                     <%= link_to '編集', edit_users_post_path(post), class: "btn btn-warning" %>
                     <%= link_to '削除', users_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
@@ -48,6 +60,6 @@
   </div>
 
   <div class="text-center mb-4">
-    <%= link_to '戻る', users_posts_path, class: 'btn btn-secondary' %> <!-- 戻るボタン -->
+    <%= link_to '戻る', users_posts_path, class: 'btn btn-secondary' %>
   </div>
 </div>
