@@ -13,6 +13,7 @@
       <h5>作成者</h5>
       <p><%= link_to @group.creator.name, user_mypage_path(@group.creator.id), class: "text-dark" %></p> 
       <hr>
+      
       <h4>メンバー</h4>
       <% if @members.any? %>
         <ul>
@@ -24,31 +25,37 @@
         <p>メンバーはいません。</p>
       <% end %>
 
-      <% unless current_user.groups.include?(@group) %>
-        <%= button_to '参加申請', group_group_memberships_path(@group), method: :post %>
-      <% else %>
+      <% if @group.group_memberships.exists?(user: current_user, status: :pending) %>
+        <p>参加申請中です。承認をお待ちください。</p>
+      <% elsif @group.group_memberships.exists?(user: current_user, status: :rejected) %>
+        <p>申請は拒否されました。</p>
+      <% elsif current_user.groups.include?(@group) %>
         <p>このグループには既に参加しています。</p>
+      <% else %>
+        <%= button_to '参加申請', group_group_memberships_path(@group), method: :post, class: "btn btn-primary" %>
       <% end %>
       
       <% if current_user == @group.creator %>
         <h3>参加申請一覧</h3>
         <ul>
           <% @pending_memberships.each do |membership| %>
-            <li>
+            <li data-membership-id="<%= membership.id %>">
               <%= membership.user.name %>
-              <%= button_to '承認', group_group_membership_path(@group, membership, status: :approved), method: :patch %>
-              <%= button_to '拒否', group_group_membership_path(@group, membership, status: :rejected), method: :patch %>
+              <%= button_to '承認', group_group_membership_path(@group, membership, status: :approved), method: :patch, remote: true, class: "btn btn-success btn-sm" %>
+              <%= button_to '拒否', group_group_membership_path(@group, membership, status: :rejected), method: :patch, remote: true, class: "btn btn-danger btn-sm" %>
             </li>
           <% end %>
         </ul>
       <% end %>
 
       <% if current_user == @group.creator %>
-        <%= link_to 'グループ削除', @group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
+        <%= link_to 'グループ削除', @group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger mt-3" %>
       <% end %>
     </div>
   </div>
-
+    <% if current_user.groups.include?(@group) %>
+      <%= button_to '退会する', group_group_membership_path(@group, @membership), method: :delete, class: "btn btn-warning mt-2", data: { confirm: '本当に退会しますか？' } %>
+    <% end %>
   <div class="mt-3 text-center">
     <%= link_to 'グループ一覧に戻る', groups_path, class: "btn btn-secondary" %>
   </div>

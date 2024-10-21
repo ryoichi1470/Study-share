@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
-    resources :group_memberships, only: [:create, :update]
+    resources :group_memberships, only: [:create, :update, :destroy]
   end  
 
   get 'mypage', to: 'users#mypage', as: 'mypage'
