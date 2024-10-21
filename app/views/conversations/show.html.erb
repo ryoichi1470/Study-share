@@ -1,22 +1,38 @@
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 75vh; padding: 20px;">
-  <h2>
-    <%= @conversation.receiver_id == current_user.id ? @conversation.sender.name : @conversation.receiver.name %>とのメッセージ
-  </h2>
+<div class="container-fluid vh-75 d-flex flex-column justify-content-center">
+  <div class="row flex-grow-1">
+    <div class="col-md-4 text-center">
+      <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.5;' %>
+    </div>
 
-  <div id="messages" style="border: 1px solid #ddd; padding: 20px; height: 400px; width: 100%; max-width: 600px; overflow-y: auto; margin-bottom: 20px;">
-    <% @messages.each do |message| %>
-      <div style="text-align: <%= message.sender_id == current_user.id ? 'right' : 'left' %>; margin: 10px 0;">
-        <div style="display: inline-block; padding: 10px; border-radius: 10px; max-width: 70%; background-color: <%= message.sender_id == current_user.id ? '#e1ffc7' : '#f1f1f1' %>;">
-          <p style="margin: 0;"><%= message.body %></p>
-        </div>
+    <div class="col-md-4">
+      <h2 class="text-center my-4">
+        <%= @conversation.receiver_id == current_user.id ? @conversation.sender.name : @conversation.receiver.name %>とのメッセージ
+      </h2>
+
+      <div id="messages" style="border: 1px solid #ddd; padding: 20px; height: 500px; width: 100%; overflow-y: auto; margin-bottom: 20px;">
+        <% @messages.each do |message| %>
+          <div style="text-align: <%= message.sender_id == current_user.id ? 'right' : 'left' %>; margin: 10px 0;">
+            <div style="display: inline-block; padding: 10px; border-radius: 10px; max-width: 70%; background-color: <%= message.sender_id == current_user.id ? '#e1ffc7' : '#f1f1f1' %>;">
+              <p style="margin: 0;"><%= message.body %></p>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+
+      <%= form_with(model: [@conversation, @message], local: true) do |f| %>
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <%= f.text_area :body, placeholder: "Type a message...", style: "flex-grow: 1; padding: 10px; border-radius: 10px; border: 1px solid #ddd; resize: none; height: 50px;" %>
+          <%= f.submit "送信", style: "background-color: #4CAF50; color: white; border: none; border-radius: 10px; padding: 10px; margin-left: 5px; cursor: pointer;" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.5;' %>
+    </div>
   </div>
 
-  <%= form_with(model: [@conversation, @message], local: true) do |f| %>
-    <div style="display: flex; justify-content: space-between; width: 100%; max-width: 800px;">
-      <%= f.text_area :body, placeholder: "Type a message...", style: "width: 500px; padding: 10px; border-radius: 10px; border: 1px solid #ddd; resize: none; height: 50px;" %>
-      <%= f.submit "送信", style: "width: 20%; background-color: #4CAF50; color: white; border: none; border-radius: 10px; padding: 10px; margin-left: 5px; cursor: pointer;" %>
-    </div>
-  <% end %>
+  <div class="text-center mt-4">
+    <%= link_to '戻る', conversations_path, class: 'btn btn-secondary' %>
+  </div>
 </div>
