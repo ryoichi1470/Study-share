@@ -16,6 +16,22 @@ class GroupsController < ApplicationController
     @members = @group.group_memberships.approved.includes(:user).map(&:user)
     @membership = @group.group_memberships.find_by(user: current_user)
   end
+  
+  def edit
+    if current_user != @group.creator
+      redirect_to @group, alert: '編集権限がありません。'
+    end
+  end
+  
+  
+  def update
+    if @group.update(group_params)
+      redirect_to @group, notice: 'グループが更新されました。'
+    else
+      flash.now[:alert] = 'グループの更新に失敗しました。入力内容を確認してください。'
+      render :edit
+    end
+  end
 
 
   def new

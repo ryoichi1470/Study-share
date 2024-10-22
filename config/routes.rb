@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'groups/index'
-    get 'groups/destroy'
-  end
-  get 'group_memberships/create'
-  get 'group_memberships/update'
-  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'

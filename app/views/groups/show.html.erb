@@ -47,6 +47,10 @@
           <% end %>
         </ul>
       <% end %>
+      <% if current_user == @group.creator %>
+        <%= link_to 'グループ編集', edit_group_path(@group), class: "btn btn-secondary mt-3" %>
+      <% end %>
+
 
       <% if current_user == @group.creator %>
         <%= link_to 'グループ削除', @group, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger mt-3" %>
