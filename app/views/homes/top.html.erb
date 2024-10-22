@@ -1,9 +1,8 @@
-<div class="text-center" style="height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background-image: url('<%= asset_path("PK-sc01-PAR55031-j_TP_V4.jpg") %>'); background-size: cover; background-position: center; position: relative;">
-  
-  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);"></div>
+<div class="text-center main-banner">
+  <div class="overlay"></div>
 
-  <div style="position: relative; z-index: 1; color: white;">
-    <h1 style="font-family: 'Pacifico', cursive;">Study Share</h1>
+  <div class="content">
+    <h1 class="banner-title">Study Share</h1>
     <p>みんなで頑張ろう！！</p>
 
     <a href="<%= new_user_registration_path %>" class="btn btn-primary btn-lg mt-3">Let's study</a>
@@ -15,7 +14,7 @@
   </div>
 </div>
 
-<section class="container-fluid py-5 text-center">
+<section class="container-fluid py-5 text-center section-info">
   <div class="row">
     <div class="col-md-4">
       <h5>勉強の記録をつけたい人！</h5>
@@ -28,3 +27,62 @@
     </div>
   </div>
 </section>
+
+<style>
+  .main-banner {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('<%= asset_path("PK-sc01-PAR55031-j_TP_V4.jpg") %>');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+
+  .banner-title {
+    font-family: 'Pacifico', cursive;
+    color: #ffffff;
+  }
+
+  .section-info h5 {
+    color: #ffffff;
+    background-color: #343a40;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
+</style>

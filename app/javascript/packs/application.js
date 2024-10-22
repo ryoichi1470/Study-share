@@ -13,6 +13,15 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
 
+document.addEventListener("turbolinks:load", function() {
+  var messagesBox = document.getElementById('messages');
+  if (messagesBox) {
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  }
+});
+
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

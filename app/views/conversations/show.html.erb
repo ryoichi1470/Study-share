@@ -1,7 +1,7 @@
 <div class="container-fluid vh-75 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center">
-      <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.5;' %>
+      <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '左の画像', class: 'img-fluid dimmed-image' %>
     </div>
 
     <div class="col-md-4">
@@ -9,31 +9,106 @@
         <%= @conversation.receiver_id == current_user.id ? @conversation.sender.name : @conversation.receiver.name %>とのメッセージ
       </h2>
 
-      <div id="messages" style="border: 1px solid #ddd; padding: 20px; height: 500px; width: 100%; overflow-y: auto; margin-bottom: 20px;">
+      <div id="messages" class="messages-box">
         <% @messages.each do |message| %>
-          <div style="text-align: <%= message.sender_id == current_user.id ? 'right' : 'left' %>; margin: 10px 0;">
-            <div style="display: inline-block; padding: 10px; border-radius: 10px; max-width: 70%; background-color: <%= message.sender_id == current_user.id ? '#e1ffc7' : '#f1f1f1' %>;">
-              <p style="margin: 0;"><%= message.body %></p>
+          <div class="message-wrapper <%= message.sender_id == current_user.id ? 'message-right' : 'message-left' %>">
+            <div class="message-content <%= message.sender_id == current_user.id ? 'sent-message' : 'received-message' %>">
+              <p><%= message.body %></p>
             </div>
           </div>
         <% end %>
       </div>
 
       <%= form_with(model: [@conversation, @message], local: true) do |f| %>
-        <div style="display: flex; justify-content: space-between; width: 100%;">
-          <%= f.text_area :body, placeholder: "Type a message...", style: "flex-grow: 1; padding: 10px; border-radius: 10px; border: 1px solid #ddd; resize: none; height: 50px;" %>
-          <%= f.submit "送信", style: "background-color: #4CAF50; color: white; border: none; border-radius: 10px; padding: 10px; margin-left: 5px; cursor: pointer;" %>
+        <div class="message-form">
+          <%= f.text_area :body, placeholder: "Type a message...", class: "message-input" %>
+          <%= f.submit "送信", class: "submit-button" %>
         </div>
       <% end %>
     </div>
 
     <div class="col-md-4 text-center">
-      <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.5;' %>
+      <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '右の画像', class: 'img-fluid dimmed-image' %>
     </div>
   </div>
 
-   <div class="text-center mt-4">
-      <%= link_to '戻る', user_mypage_path(@conversation.receiver_id == current_user.id ? @conversation.sender : @conversation.receiver), class: 'btn btn-secondary' %>
-    </div>
-
+  <div class="text-center mt-4">
+    <%= link_to '戻る', user_mypage_path(@conversation.receiver_id == current_user.id ? @conversation.sender : @conversation.receiver), class: 'btn btn-secondary' %>
+  </div>
 </div>
+
+<style>
+  .dimmed-image {
+    opacity: 0.5;
+  }
+
+  .messages-box {
+    border: 1px solid #ddd;
+    padding: 20px;
+    height: 500px;
+    width: 100%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  .message-wrapper {
+    margin: 10px;
+  }
+
+  .message-right {
+    text-align: right;
+  }
+
+  .message-left {
+    text-align: left;
+  }
+
+  .message-content {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    margin-bottom: 0;
+  }
+  
+  .message-content p {
+    margin-bottom: 0; 
+  }
+
+  .sent-message {
+    background-color: #e1ffc7;
+  }
+
+  .received-message {
+    background-color: #f1f1f1;
+  }
+
+  .message-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    resize: none;
+    height: 50px;
+  }
+
+  .submit-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+</style>
