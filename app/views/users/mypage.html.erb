@@ -1,9 +1,9 @@
-<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">マイページ</h1>
+<h1 class="text-center my-0">マイページ</h1>
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid left-image' %>
     </div>
 
     <div class="col-md-4">
@@ -15,12 +15,12 @@
         <div class="row">
           <p><strong>メールアドレス:</strong> <%= @user.email %></p>
         </div>
-       <div class="row">
-        <p><strong>フォロー：</strong><%= link_to @user.followings.count, users_followings_path(user_id: @user.id) %></p>
-        <p style="margin-left: 10px;"><strong>フォロワー：</strong><%= link_to @user.followers.count, users_followers_path(user_id: @user.id) %></p>
-      </div>
+        <div class="row">
+          <p><strong>フォロー：</strong><%= link_to @user.followings.count, users_followings_path(user_id: @user.id) %></p>
+          <p style="margin-left: 10px;"><strong>フォロワー：</strong><%= link_to @user.followers.count, users_followers_path(user_id: @user.id) %></p>
+        </div>
         <%= link_to 'ユーザー編集', edit_user_registration_path, class: "btn btn-warning" %>
-        
+
         <% if current_user.admin? %>
           <h4 class="mt-4">管理者メニュー</h4>
           <%= link_to 'コメント一覧', admin_comments_path, class: 'btn btn-primary' %>
@@ -51,7 +51,18 @@
     </div>
 
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid right-image' %>
     </div>
   </div>
 </div>
+
+<style>
+  h1 {
+    background-color: #001f3f;
+    color: white;
+  }
+
+  .left-image, .right-image {
+    opacity: 0.3; 
+  }
+</style>

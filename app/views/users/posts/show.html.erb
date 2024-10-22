@@ -1,9 +1,9 @@
-<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">投稿詳細</h1>
+<h1 class="text-center my-0">投稿詳細</h1>
 
 <div class="container-fluid min-vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid left-image' %>
     </div>
 
     <div class="col-md-4">
@@ -22,20 +22,21 @@
           投稿者: <%= link_to @post.user.name, user_mypage_path(@post.user.id), class: 'text-muted' %> 
         </p>
       </div>
+
       <div id="favorite_btn_<%= @post.id %>">
         <%= render "users/favorites/btn", post: @post %>
       </div>
-      <div id="comment_counter" style="mt-3">
+
+      <div id="comment_counter" class="mt-3">
         <%= render "users/comments/counter", post: @post %>
       </div>
-
 
       <h2 class="mt-4">コメント</h2>
       <%= render "users/comments/form", post: @post, comment: @comment %>
       
-       <div id="comment_index">
-          <%= render "users/comments/index", post: @post %>
-        </div>
+      <div id="comment_index">
+        <%= render "users/comments/index", post: @post %>
+      </div>
 
       <div class="text-center mt-5">
         <% if @post.user == current_user %> 
@@ -53,7 +54,18 @@
     </div>
 
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid right-image' %>
     </div>
   </div>
 </div>
+
+<style>
+  h1 {
+    background-color: #001f3f;
+    color: white;
+  }
+
+  .left-image, .right-image {
+    opacity: 0.3;
+  }
+</style>

@@ -1,9 +1,9 @@
-<h1 class="text-center my-0" style="background-color: #001f3f; color: white;">新規投稿</h1>
+<h1 class="text-center my-0">新規投稿</h1>
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000033_TP_V4.jpg', alt: '左の画像', class: 'img-fluid' %>
+      <%= image_tag 'uchino_6270000033_TP_V4.jpg', alt: '左の画像', class: 'img-fluid left-image' %>
     </div>
 
     <div class="col-md-4">
@@ -41,7 +41,18 @@
     </div>
 
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000033_TP_V4.jpg', alt: '右の画像', class: 'img-fluid' %>
+      <%= image_tag 'uchino_6270000033_TP_V4.jpg', alt: '右の画像', class: 'img-fluid right-image' %>
     </div>
   </div>
 </div>
+
+<style>
+  h1 {
+    background-color: #001f3f;
+    color: white;
+  }
+
+  .left-image, .right-image {
+    opacity: 1; 
+  }
+</style>

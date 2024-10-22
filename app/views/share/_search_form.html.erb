@@ -1,5 +1,5 @@
-<div style="background-color: #001f3f; padding: 0; margin: 0;">
-  <div class="container-fluid d-flex justify-content-end" style="padding: 0; margin: 0;">
+<div class="search-bar">
+  <div class="container-fluid d-flex justify-content-end">
     <div class="d-flex">
       <form class="d-flex ms-auto" action="<%= search_path %>" method="get">
         <select class="form-select me-2" name="search_type" aria-label="Search Type">
@@ -8,8 +8,25 @@
         </select>
         
         <input class="form-control me-2" type="search" name="query" placeholder="キーワード検索" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" style="white-space: nowrap;">検索</button>
+        <button class="btn btn-outline-success" type="submit">検索</button>
       </form>
     </div>
   </div>
 </div>
+
+<style>
+  .search-bar {
+    background-color: #001f3f;
+    padding: 0;
+    margin: 0;
+  }
+
+  .container-fluid {
+    padding: 0;
+    margin: 0;
+  }
+
+  .btn-outline-success {
+    white-space: nowrap;
+  }
+</style>

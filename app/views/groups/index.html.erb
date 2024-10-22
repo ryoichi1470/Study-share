@@ -1,4 +1,4 @@
-<h1 class="text-center my-0 " style="background-color: #001f3f; color: white;">グループ一覧</h1>
+<h1 class="text-center my-0 title">グループ一覧</h1>
 
 <% if flash[:alert] %>
   <div class="alert alert-warning" role="alert">
@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-md-12 text-center mb-3">
       <%= form_with(url: groups_path, method: :get, local: true) do %>
-        <div class="input-group justify-content-center" style="background-color: #001f3f;"> 
+        <div class="input-group justify-content-center search-group"> 
           <div class="col-md-3">  
             <%= text_field_tag :search, params[:search], placeholder: 'グループ名またはテーマを検索', class: 'form-control' %>
           </div>
@@ -24,7 +24,7 @@
 
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid dimmed-image' %>
     </div>
 
     <div class="col-md-4">
@@ -32,7 +32,7 @@
         <% if @groups.any? %>
           <% @groups.each do |group| %>
             <div class="card mb-3">
-             <div class="card-body">
+              <div class="card-body">
                 <h5 class="card-title"><%= link_to group.name, group, class: "text-dark text-decoration-none" %></h5>
                 <p class="card-text">テーマ: <%= group.theme %></p>
                 <p class="card-text">ルール: <%= group.rules %></p>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="col-md-4 text-center">
-      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid', style: 'opacity: 0.3;' %>
+      <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid dimmed-image' %>
     </div>
   </div>
 
@@ -71,3 +71,18 @@
     </div>
   </div>
 </div>
+
+<style>
+  .title {
+    background-color: #001f3f; 
+    color: white; 
+  }
+
+  .search-group {
+    background-color: #001f3f; 
+  }
+
+  .dimmed-image {
+    opacity: 0.3; 
+  }
+</style>

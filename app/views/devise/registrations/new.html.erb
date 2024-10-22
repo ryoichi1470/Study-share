@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center align-items-start" style="min-height: 80vh;">
-  <div class="col-md-6 mt-5 p-4 border" style="background-color: #ffffff; border-radius: 10px;">
-    <h2 style="font-family: 'Pacifico', cursive; color: #444; text-align: center;">Sign up</h2>
+  <div class="col-md-6 mt-5 p-4 border signup-container">
+    <h2 class="signup-title">Sign up</h2>
 
     <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), html: { class: "signup-form" }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -38,3 +38,15 @@
     </div>
   </div>
 </div>
+
+<style>
+  .signup-container {
+    background-color: #ffffff; 
+    border-radius: 10px; 
+  }
+  .signup-title {
+    font-family: 'Pacifico', cursive; 
+    color: #444; 
+    text-align: center; 
+  }
+</style>
