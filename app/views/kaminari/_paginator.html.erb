@@ -1,0 +1,88 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do -%>
+  <nav class="pagination-container" role="navigation" aria-label="pager">
+    <% unless current_page.first? %>
+      <span class="pagination-item">
+        <%= link_to '最初', url_for(page: 1), class: "pagination-link" %>
+      </span>
+    <% end %>
+    <% unless current_page.number == 1 %>
+      <span class="pagination-item">
+        <%= link_to '前', url_for(page: current_page.number - 1), class: "pagination-link" %>
+      </span>
+    <% end %>
+    <% each_page do |page| -%>
+      <% if page.display_tag? -%>
+        <span class="pagination-item">
+          <%= link_to page.number, url_for(page: page.number), class: "pagination-link" %>
+        </span>
+      <% elsif !page.was_truncated? -%>
+        <span class="pagination-item">...</span>
+      <% end -%>
+    <% end -%>
+    <% unless current_page.out_of_range? %>
+      <% unless current_page.number == total_pages %>
+        <span class="pagination-item">
+          <%= link_to '次', url_for(page: current_page.number + 1), class: "pagination-link" %>
+        </span>
+      <% end %>
+      <% unless current_page.number == total_pages %>
+        <span class="pagination-item">
+          <%= link_to '最後', url_for(page: total_pages), class: "pagination-link" %>
+        </span>
+      <% end %>
+    <% end %>
+  </nav>
+<% end -%>
+
+
+
+
+
+
+<style>
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: #ffffff; 
+    border-radius: 25px; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .pagination-item {
+    margin: 0 10px; 
+  }
+
+  .pagination-link {
+    padding: 10px 16px;
+    border: 2px solid #007bff; 
+    border-radius: 20px; 
+    color: #007bff; 
+    text-decoration: none;
+    background-color: #f0f8ff; 
+    transition: background-color 0.3s, color 0.3s; 
+    font-weight: bold; 
+    font-size: 16px; 
+  }
+
+  .pagination-link:hover {
+    background-color: #007bff; 
+    color: white; 
+  }
+
+  .pagination-link.active {
+    background-color: #007bff; 
+    color: white; 
+    border-color: #0056b3; 
+  }
+</style>
+
+

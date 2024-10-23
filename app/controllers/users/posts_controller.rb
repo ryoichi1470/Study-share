@@ -19,7 +19,7 @@ class Users::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(4)
   end
 
   def show

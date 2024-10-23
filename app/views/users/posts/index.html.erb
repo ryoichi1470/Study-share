@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-md-4">
-      <div class="post-list mt-5">
+      <div class="post-list mt-2">
         <% if @posts.any? %>
           <% @posts.each do |post| %>
             <div class="card mb-3">
@@ -36,6 +36,11 @@
               </div>
             </div>
           <% end %>
+          
+          <div class="mt-4 mb-2 d-flex justify-content-center">
+            <%= paginate @posts %>
+          </div>
+
         <% else %>
           <p>投稿はまだありません。</p>
         <% end %>
@@ -52,9 +57,12 @@
   h1 {
     background-color: #001f3f;
     color: white;
+    padding: 15px 0; 
+    border-radius: 5px;
   }
 
   .left-image, .right-image {
     opacity: 0.3;
   }
+  
 </style>
