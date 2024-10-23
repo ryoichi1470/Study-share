@@ -4,11 +4,13 @@ class GroupsController < ApplicationController
 
   def index
     if params[:search].present?
-      @groups = Group.where('name ILIKE ? OR theme ILIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+      search_term = "%#{params[:search].downcase}%"
+      @groups = Group.where('LOWER(name) LIKE ? OR LOWER(theme) LIKE ?', search_term, search_term)
     else
       @groups = Group.all
     end
   end
+
 
   def show
     @pending_memberships = @group.group_memberships.pending if current_user == @group.creator
