@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
   
   def following?(user)
-    followings.include?(user)
+    active_relationships.where(followed_id: user.id).exists?
   end
 
   
@@ -37,7 +37,7 @@ class User < ApplicationRecord
   end
   
   def guest?
-    email == 'guest@example.com' # ゲストアカウントに設定しているメールアドレス
+    email == 'guest@example.com' 
   end
   
 end

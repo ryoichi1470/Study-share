@@ -16,11 +16,20 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
-    if [@conversation.sender_id, @conversation.receiver_id].include?(current_user.id)
-      @messages = @conversation.direct_messages
-      @message = DirectMessage.new
-    else
-      redirect_to conversations_path, alert: 'Unauthorized access'
+    
+    can_access = (current_user.following?(@conversation.sender) && @conversation.sender.present?) ||
+                 (current_user.following?(@conversation.receiver) && @conversation.receiver.present?)
+    
+    Rails.logger.info "User #{current_user.id} trying to access conversation #{@conversation.id}. Can access: #{can_access}"
+    
+    unless can_access
+      redirect_to users_posts_path, alert: 'このユーザーとはチャットできません。'
+      return
     end
+    
+    @messages = @conversation.direct_messages
+    @message = DirectMessage.new
+    Rails.logger.info "Messages loaded for conversation #{@conversation.id}: #{@messages.count} messages."
   end
+
 end
