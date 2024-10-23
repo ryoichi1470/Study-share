@@ -1,53 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark">
-  <div class="container-fluid d-flex justify-content-between"> 
-    <a class="navbar-brand" href="<%= root_path %>">Study Share</a>
-
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav d-flex justify-content-evenly w-100">
-          <% if user_signed_in? %>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= about_path %>">About</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= users_posts_path %>">投稿一覧</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= mypage_path %>">マイページ</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= new_users_post_path %>">新規投稿</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= groups_path %>">グループ一覧</a>
-            </li> 
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
-            </li>
-          <% else %>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= root_path %>">Top</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= about_path %>">About</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= new_user_registration_path %>">新規登録</a>
-            </li>
-            <li class="nav-item flex-fill text-center">
-              <a class="nav-link" href="<%= new_user_session_path %>">ログイン</a>
-            </li>
-          <% end %>
-        </ul>
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid d-flex justify-content-between"> 
+      <a class="navbar-brand" href="<%= root_path %>">Study Share</a>
+  
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+  
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav d-flex justify-content-evenly w-100">
+            <% if user_signed_in? %>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= about_path %>">About</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= users_posts_path %>">投稿一覧</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= mypage_path %>">マイページ</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= new_users_post_path %>">新規投稿</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= groups_path %>">グループ一覧</a>
+              </li> 
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= destroy_user_session_path %>" data-method="delete">ログアウト</a>
+              </li>
+            <% else %>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= root_path %>">Top</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= about_path %>">About</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= new_user_registration_path %>">新規登録</a>
+              </li>
+              <li class="nav-item flex-fill text-center">
+                <a class="nav-link" href="<%= new_user_session_path %>">ログイン</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
 
 <style>
   .navbar {
