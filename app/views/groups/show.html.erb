@@ -62,7 +62,7 @@
     <%= button_to '退会する', group_group_membership_path(@group, @membership), method: :delete, class: "btn btn-warning mt-2", data: { confirm: '本当に退会しますか？' } %>
   <% end %>
 
-  <% if current_user.admin? %> <
+  <% if current_user.admin? %> 
     <div class="mt-3 text-center">
       <%= link_to '管理者用グループ一覧に戻る', admin_groups_path, class: "btn btn-secondary" %> 
     </div>
