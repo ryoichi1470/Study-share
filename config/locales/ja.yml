@@ -6,6 +6,27 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      group:
+        name: "グループ名"
+        theme: "テーマ"
+        rules: "ルール"
+    errors:
+      models:
+        group:
+          attributes:
+            name:
+              blank: "グループ名を入力してください"
+              too_short: "グループ名は%{count}文字以上である必要があります"
+              too_long: "グループ名は%{count}文字以下である必要があります"
+            theme:
+              blank: "テーマを入力してください"
+              too_short: "テーマは%{count}文字以上である必要があります"
+              too_long: "テーマは%{count}文字以下である必要があります"
+            rules:
+              blank: "ルールを入力してください"
+              too_short: "ルールは%{count}文字以上である必要があります"
+              too_long: "ルールは%{count}文字以下である必要があります"
   date:
     abbr_day_names:
     - 日

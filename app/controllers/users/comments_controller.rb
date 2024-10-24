@@ -16,7 +16,7 @@ class Users::CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to users_post_path(@post), notice: 'コメントが更新されました。'
+      redirect_to users_post_path(@post)
     else
       render :edit
     end
