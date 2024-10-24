@@ -4,7 +4,6 @@ class Users::PostsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :restrict_guest_user, only: [:new, :create, :edit, :update, :destroy]
 
-
   def new
     @post = current_user.posts.build
   end
@@ -27,7 +26,6 @@ class Users::PostsController < ApplicationController
   end
 
   def edit
-   
   end
 
   def update
@@ -41,24 +39,26 @@ class Users::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to users_posts_path, notice: '投稿が削除されました。'
+    redirect_to mypage_path
   end
 
   private
 
   def set_post
-    @post = Post.find(params[:id])  
+    @post = Post.find_by(id: params[:id])
+    unless @post
+      redirect_to users_posts_path, alert: "投稿が見つかりませんでした。"
+    end
   end
 
   def post_params
     params.require(:post).permit(:title, :text)
   end
- 
+
   def correct_user
     redirect_to users_posts_path, alert: "権限がありません。" unless @post.user == current_user
   end
 
-  
   def restrict_guest_user
     if current_user.guest?
       redirect_to users_posts_path, alert: "ゲストユーザーはこの操作を実行できません。"

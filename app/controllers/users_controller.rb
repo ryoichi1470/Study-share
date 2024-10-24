@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
   before_action :check_guest_user, only: [:mypage]
   before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update]
 
   def mypage
     @user = current_user 
@@ -37,8 +38,10 @@ class UsersController < ApplicationController
   end
   
   def correct_user
-    unless current_user == @user || current_user.admin?
-      redirect_to mypage_path(current_user), alert: "編集権限がありません。"
+    if current_user.nil?
+      redirect_to new_user_session_path, alert: "ログインが必要です。"
+    elsif current_user != @user && !current_user.admin?
+      redirect_to mypage_path(current_user)
     end
   end
   
