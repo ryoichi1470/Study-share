@@ -1,15 +1,15 @@
 class DirectMessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_conversation
-
+  
   def create
     @message = @conversation.direct_messages.build(message_params)
     @message.sender_id = current_user.id
     if @message.save
       redirect_to conversation_path(@conversation)
     else
-      flash[:alert] = 'メッセージが送信できませんでした'
-      render 'conversations/show'
+      flash[:alert] = 'メッセージが空です' if @message.errors[:body].present?
+      redirect_to conversation_path(@conversation, anchor: 'messages')
     end
   end
 

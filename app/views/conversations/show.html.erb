@@ -21,9 +21,12 @@
 
       <%= form_with(model: [@conversation, @message], local: true) do |f| %>
         <div class="message-form">
-          <%= f.text_area :body, placeholder: "Type a message...", class: "message-input" %>
+          <%= f.text_area :body, placeholder: "メッセージを入力...", class: "message-input" %>
           <%= f.submit "送信", class: "submit-button" %>
         </div>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="error-messages"><%= flash[:alert] %></p>
       <% end %>
     </div>
 
@@ -36,6 +39,8 @@
     <%= link_to '戻る', user_mypage_path(@conversation.receiver_id == current_user.id ? @conversation.sender : @conversation.receiver), class: 'btn btn-secondary' %>
   </div>
 </div>
+
+
 
 <style>
   .dimmed-image {
@@ -57,7 +62,6 @@
 
   .message-right {
     text-align: right;
-    direction: rtl;
   }
 
   .message-left {
@@ -72,11 +76,12 @@
     margin-bottom: 0;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    word-break: break-all; 
     text-align: left;
   }
-  
+
   .message-content p {
-    margin-bottom: 0; 
+    margin-bottom: 0;
   }
 
   .sent-message {
@@ -85,6 +90,12 @@
 
   .received-message {
     background-color: #f1f1f1;
+  }
+
+  .error-messages {
+    color: red;
+    margin-bottom: 10px;
+    text-align: left;
   }
 
   .message-form {
