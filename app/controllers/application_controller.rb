@@ -19,10 +19,12 @@ class ApplicationController < ActionController::Base
   
   private
 
+  
   def restrict_guest_access
-    if current_user&.guest? && !request.path.match?(users_posts_path)
+    if current_user&.guest? && !request.path.match?(/#{users_posts_path}|#{about_path}/)
       flash[:alert] = "ゲストユーザーは投稿一覧以外のページにアクセスできません"
       redirect_to users_posts_path
     end
   end
+
 end

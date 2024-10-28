@@ -61,7 +61,7 @@ class Users::PostsController < ApplicationController
 
   def restrict_guest_user
     if current_user.guest?
-      redirect_to users_posts_path, alert: "ゲストユーザーはこの操作を実行できません。"
+      redirect_to users_posts_path, alert: "ゲストユーザーは投稿一覧以外のページにアクセスできません"
     end
   end
 end
