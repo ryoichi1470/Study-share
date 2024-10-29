@@ -2,11 +2,11 @@
 
 <div class="container-fluid min-vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
-    <div class="col-md-4 text-center">
+    <div class="col-12 col-md-4 text-center d-none d-md-block">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid left-image' %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-12 col-md-4">
       <div class="post-detail mt-5">
         <h5 class="form-label">タイトル</h5>
         <hr>
@@ -53,7 +53,7 @@
       <% end %>
     </div>
 
-    <div class="col-md-4 text-center">
+    <div class="col-12 col-md-4 text-center d-none d-md-block">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid right-image' %>
     </div>
   </div>
@@ -67,5 +67,20 @@
 
   .left-image, .right-image {
     opacity: 0.3;
+  }
+
+  @media (max-width: 767px) {
+    .post-detail h5 {
+      font-size: 1.2rem;
+    }
+    .post-detail p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .post-detail {
+      margin-top: 50px;
+    }
   }
 </style>
