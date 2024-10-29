@@ -2,18 +2,18 @@
   <nav class="pagination-container" role="navigation" aria-label="pager">
     <% unless current_page.first? %>
       <span class="pagination-item">
-        <%= link_to '最初', url_for(page: 1), class: "pagination-link" %>
+        <%= link_to '最初', url_for(query: params[:query],search_type: params[:search_type], page: 1), class: "pagination-link" %>
       </span>
     <% end %>
     <% unless current_page.number == 1 %>
       <span class="pagination-item">
-        <%= link_to '前', url_for(page: current_page.number - 1), class: "pagination-link" %>
+        <%= link_to '前', url_for(query: params[:query],search_type: params[:search_type], page: current_page.number - 1), class: "pagination-link" %>
       </span>
     <% end %>
     <% each_page do |page| -%>
       <% if page.display_tag? -%>
         <span class="pagination-item">
-          <%= link_to page.number, url_for(page: page.number), class: "pagination-link #{'active' if page.number == current_page.number}" %>
+          <%= link_to page.number, url_for(query: params[:query],search_type: params[:search_type], page: page.number), class: "pagination-link #{'active' if page.number == current_page.number}" %>
         </span>
       <% elsif !page.was_truncated? -%>
         <span class="pagination-item">...</span>
@@ -22,12 +22,12 @@
     <% unless current_page.out_of_range? %>
       <% unless current_page.number == total_pages %>
         <span class="pagination-item">
-          <%= link_to '次', url_for(page: current_page.number + 1), class: "pagination-link" %>
+          <%= link_to '次', url_for(query: params[:query],search_type: params[:search_type], page: current_page.number + 1), class: "pagination-link" %>
         </span>
       <% end %>
       <% unless current_page.number == total_pages %>
         <span class="pagination-item">
-          <%= link_to '最後', url_for(page: total_pages), class: "pagination-link" %>
+          <%= link_to '最後', url_for(query: params[:query],search_type: params[:search_type], page: total_pages,), class: "pagination-link" %>
         </span>
       <% end %>
     <% end %>
