@@ -5,14 +5,17 @@ class Users::CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
-    @comment.save
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to users_post_path(@post), notice: 'コメントが作成されました。' }
+        format.js 
+      end
+    else
+      render :new
+    end
   end
 
-
-  def edit
-    set_post
-    set_comment
-  end
+  def edit; end
 
   def update
     if @comment.update(comment_params)
@@ -24,6 +27,10 @@ class Users::CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to users_post_path(@post), notice: 'コメントが削除されました。' }
+      format.js   
+    end
   end
 
   private
