@@ -1,11 +1,3 @@
-<%# The container tag
-  - available local variables
-    current_page:  a page object for the currently displayed page
-    total_pages:   total number of pages
-    per_page:      number of items to fetch per page
-    remote:        data-remote
-    paginator:     the paginator that renders the pagination tags inside
--%>
 <%= paginator.render do -%>
   <nav class="pagination-container" role="navigation" aria-label="pager">
     <% unless current_page.first? %>
@@ -21,7 +13,7 @@
     <% each_page do |page| -%>
       <% if page.display_tag? -%>
         <span class="pagination-item">
-          <%= link_to page.number, url_for(page: page.number), class: "pagination-link" %>
+          <%= link_to page.number, url_for(page: page.number), class: "pagination-link #{'active' if page.number == current_page.number}" %>
         </span>
       <% elsif !page.was_truncated? -%>
         <span class="pagination-item">...</span>
@@ -42,11 +34,6 @@
   </nav>
 <% end -%>
 
-
-
-
-
-
 <style>
   .pagination-container {
     display: flex;
@@ -62,27 +49,31 @@
   }
 
   .pagination-link {
-    padding: 10px 16px;
-    border: 2px solid #007bff; 
-    border-radius: 20px; 
-    color: #007bff; 
+    display: inline-flex;         
+    justify-content: center;       
+    align-items: center;         
+    width: 50px;                   
+    height: 50px;                 
+    padding: 0;                    
+    border: 2px solid #007bff;
+    border-radius: 50%;            
+    color: #007bff;
     text-decoration: none;
-    background-color: #f0f8ff; 
-    transition: background-color 0.3s, color 0.3s; 
-    font-weight: bold; 
-    font-size: 16px; 
+    background-color: #f0f8ff;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    font-size: 16px;
   }
-
+  
   .pagination-link:hover {
-    background-color: #007bff; 
-    color: white; 
+      background-color: #007bff;
+      color: white;
   }
-
+  
   .pagination-link.active {
-    background-color: #007bff; 
-    color: white; 
-    border-color: #0056b3; 
+      background-color: #007bff;
+      color: white;
+      border-color: #0056b3;
   }
+
 </style>
-
-

@@ -14,9 +14,8 @@
 
     <div class="col-md-4">
       <div class="search-results mt-5">
-        <% if params[:search_type] == 'users' %>
+        <% if @search_type == 'users' %>
           <h2>ユーザーの検索結果</h2>
-          <% @users ||= [] %> 
           <% if @users.any? %>
             <% @users.each do |user| %>
               <div class="card mb-3">
@@ -25,12 +24,13 @@
                 </div>
               </div>
             <% end %>
+            <%= paginate @users %>
           <% else %>
             <p>該当するユーザーが見つかりませんでした。</p>
           <% end %>
-        <% elsif params[:search_type] == 'posts' %>
+
+        <% elsif @search_type == 'posts' %>
           <h2>投稿の検索結果</h2>
-          <% @posts ||= [] %> 
           <% if @posts.any? %>
             <% @posts.each do |post| %>
               <div class="card mb-3">
@@ -38,7 +38,7 @@
                   <h5 class="card-title"><%= post.title %></h5>
                   <p class="card-text"><%= post.text %></p>
                   <p class="text-muted">
-                    投稿者: <%= link_to post.user.name, user_mypage_path(post.user.id), class: 'text-muted' %>
+                    投稿者: <%= link_to post.user.name, user_mypage_path(post.user), class: 'text-muted' %>
                   </p>
                   <div class="text-end"> 
                     <%= link_to '詳細', users_post_path(post), class: "btn btn-info" %>
@@ -46,6 +46,7 @@
                 </div>
               </div>
             <% end %>
+            <%= paginate @posts %>
           <% else %>
             <p>該当する投稿が見つかりませんでした。</p>
           <% end %>
@@ -63,9 +64,15 @@
   h1 {
     background-color: #001f3f; 
     color: white; 
+    padding: 10px;
   }
 
   .img-fluid {
     opacity: 0.3; 
+    transition: opacity 0.3s ease;
+  }
+
+  .img-fluid:hover {
+    opacity: 1; 
   }
 </style>
