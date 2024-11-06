@@ -76,9 +76,20 @@
   .col-md-4 {
     width: 33.33%;
   }
-
+  
   .col-md-4:nth-child(2) {
     margin: 0 auto;
     width: 33.33%;
+  }
+
+  @media (max-width: 768px) {
+    .fixed-left, .fixed-right {
+      display: none;
+    }
+
+    .col-md-4:nth-child(2) {
+      width: 100%;
+      margin: 0 auto;
+    }
   }
 </style>

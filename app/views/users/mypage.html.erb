@@ -2,7 +2,7 @@
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center fixed-left">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid left-image' %>
     </div>
 
@@ -50,7 +50,7 @@
       </div>
     </div>
 
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center fixed-right">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid right-image' %>
     </div>
   </div>
@@ -68,6 +68,31 @@
   
   .row {
     margin-left: 8px;
+  }
+  
+  .fixed-left {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .fixed-right {
+    position: fixed;
+    top: 65px;
+    right: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .col-md-4 {
+    width: 33.33%;
+  }
+  
+  .col-md-4:nth-child(2) {
+    margin: 0 auto;
+    width: 33.33%;
   }
 
   @media (max-width: 768px) {

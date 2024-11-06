@@ -23,11 +23,18 @@
   </div>
 
   <div class="row flex-grow-1">
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center fixed-left">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid dimmed-image' %>
     </div>
 
     <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12 text-center mt-3 mb-2">
+          <% if user_signed_in? %>
+            <%= link_to 'グループ作成', new_group_path, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
       <div class="group-list mt-5">
         <% if @groups.any? %>
           <% @groups.each do |group| %>
@@ -58,16 +65,8 @@
       </div>
     </div>
 
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center fixed-right">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid dimmed-image' %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 text-center mt-3 mb-2">
-      <% if user_signed_in? %>
-        <%= link_to 'グループ作成', new_group_path, class: "btn btn-primary" %>
-      <% end %>
     </div>
   </div>
 </div>
@@ -84,5 +83,30 @@
 
   .dimmed-image {
     opacity: 0.3; 
+  }
+  
+  .fixed-left {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .fixed-right {
+    position: fixed;
+    top: 65px;
+    right: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .col-md-4 {
+    width: 33.33%;
+  }
+  
+  .col-md-4:nth-child(2) {
+    margin: 0 auto;
+    width: 33.33%;
   }
 </style>
