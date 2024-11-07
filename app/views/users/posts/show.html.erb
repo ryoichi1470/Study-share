@@ -2,7 +2,7 @@
 
 <div class="container-fluid min-vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
-    <div class="col-12 col-md-4 text-center d-none d-md-block">
+    <div class="col-12 col-md-4 text-center d-none d-md-block fixed-left">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '左の画像', class: 'img-fluid left-image' %>
     </div>
 
@@ -53,7 +53,7 @@
       <% end %>
     </div>
 
-    <div class="col-12 col-md-4 text-center d-none d-md-block">
+    <div class="col-12 col-md-4 text-center d-none d-md-block fixed-right">
       <%= image_tag 'uchino_6270000036_TP_V4.jpg', alt: '右の画像', class: 'img-fluid right-image' %>
     </div>
   </div>
@@ -67,6 +67,31 @@
 
   .left-image, .right-image {
     opacity: 0.3;
+  }
+  
+  .fixed-left {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .fixed-right {
+    position: fixed;
+    top: 65px;
+    right: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .col-md-4 {
+    width: 33.33%;
+  }
+  
+  .col-md-4:nth-child(2) {
+    margin: 0 auto;
+    width: 33.33%;
   }
 
   @media (max-width: 767px) {
