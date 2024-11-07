@@ -68,7 +68,18 @@
     </div>
   <% end %>
 
-  <div class="mt-3 text-center">
+  <div class="mt-3 text-center back-btn">
     <%= link_to 'グループ一覧に戻る', groups_path, class: "btn btn-secondary" %>
   </div>
 </div>
+
+<style>
+  .card-body {
+    margin-top: 0px;
+    padding-bottom: 10px;
+  }
+  
+  .back-btn {
+    padding-bottom: 120px;
+  }
+</style>
