@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = @user.posts 
+    @posts = @user.posts.page(params[:page]).per(5)
   end
 
   def edit
