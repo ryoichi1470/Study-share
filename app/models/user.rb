@@ -6,6 +6,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { minimum: 2, maximum: 50 }
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorited_posts, through: :favorites, source: :post
   has_many :comments, dependent: :destroy 
   has_many :groups, dependent: :destroy
   has_many :group_memberships

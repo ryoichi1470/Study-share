@@ -1,11 +1,4 @@
-<h1 class="text-center my-0 title">投稿一覧</h1>
-
-<% if flash[:alert] %>
-  <div class="alert alert-warning" role="alert">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-
+<h1 class="text-center my-0 title">いいねした投稿一覧</h1>
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
@@ -15,8 +8,8 @@
 
     <div class="col-md-4">
       <div class="post-list mt-2">
-        <% if @posts.any? %>
-          <% @posts.each do |post| %>
+        <% if @favorited_posts.any? %>
+          <% @favorited_posts.each do |post| %>
             <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><%= post.title %></h5>
@@ -39,13 +32,17 @@
           <% end %>
 
           <div class="mt-4 mb-2 d-flex justify-content-center">
-            <%= paginate @posts %>
+            <%= paginate @favorited_posts %>
           </div>
 
         <% else %>
-          <p>投稿はまだありません。</p>
+          <p>まだいいねした投稿がありません。</p>
         <% end %>
       </div>
+      <div class="back-btn">
+        <%= link_to '戻る', '#', onclick: 'history.back(); return false;', class: 'btn btn-secondary' %>
+      </div>
+
     </div>
 
     <div class="col-md-4 text-center fixed-right">
@@ -69,9 +66,6 @@
   .left-image, .right-image {
     opacity: 0.3;
   }
-  
-  
-
 
   .fixed-left {
     position: fixed;
@@ -97,6 +91,10 @@
   .col-md-4:nth-child(2) {
     margin: 0 auto;
     width: 33.33%;
+  }
+  
+  .back-btn {
+      text-align: center;
   }
 
   @media (max-width: 768px) {

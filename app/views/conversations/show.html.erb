@@ -1,6 +1,6 @@
 <div class="container-fluid vh-75 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center fixed-left">
       <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '左の画像', class: 'img-fluid dimmed-image' %>
     </div>
 
@@ -30,7 +30,7 @@
       <% end %>
     </div>
 
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center fixed-right">
       <%= image_tag 'PK-sc02-IMGP6348-a_TP_V4.jpg', alt: '右の画像', class: 'img-fluid dimmed-image' %>
     </div>
   </div>
@@ -125,6 +125,31 @@
 
   .submit-button:hover {
     background-color: #45a049;
+  }
+  
+  .fixed-left {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .fixed-right {
+    position: fixed;
+    top: 65px;
+    right: 0;
+    width: 33.33%;
+    z-index: -1;
+  }
+
+  .col-md-4 {
+    width: 33.33%;
+  }
+  
+  .col-md-4:nth-child(2) {
+    margin: 0 auto;
+    width: 33.33%;
   }
 
   @media (max-width: 768px) {

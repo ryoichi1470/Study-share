@@ -38,7 +38,11 @@ Rails.application.routes.draw do
 
 
   
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update] do
+    member do
+      get :favorited_posts
+    end
+  end
   
   # resources :posts do
   #   resource :favorites, only: [:create, :destroy]

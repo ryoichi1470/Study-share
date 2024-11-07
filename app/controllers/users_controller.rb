@@ -12,6 +12,11 @@ class UsersController < ApplicationController
   def show
     @posts = @user.posts.page(params[:page]).per(5)
   end
+  
+  def favorited_posts
+    @user = User.find(params[:id])
+    @favorited_posts = @user.favorited_posts.page(params[:page]).per(10)
+  end    
 
   def edit
   

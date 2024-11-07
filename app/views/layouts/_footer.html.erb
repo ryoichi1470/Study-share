@@ -1,4 +1,4 @@
-<footer class="text-center py-4 sticky-bottom" style="background-color: #001f3f; color: white;">
+<footer class="text-center py-4 fixed-bottom" style="background-color: #001f3f; color: white;">
   <p>&copy; 2024 StudyShare. All rights reserved.</p>
   <a href="<%= about_path %>" style="color: #f5f5dc;">About</a>
 </footer>
@@ -6,8 +6,11 @@
 
 <style>
   
-  .sticky-bottom {
-    position: sticky;
+  .fixed-bottom {
+    position: fixed;
     bottom: 0;
+    width: 100%;
+    z-index: 10;
   }
+
 </style>

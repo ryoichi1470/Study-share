@@ -29,6 +29,9 @@
             <p><strong>フォロー：</strong><%= link_to @user.followings.count, users_followings_path(user_id: @user.id) %></p>
             <p style="margin-left: 10px;"><strong>フォロワー：</strong><%= link_to @user.followers.count, users_followers_path(user_id: @user.id) %></p>
           </div>
+          <div class="like">
+            <%= link_to 'いいねした投稿一覧', favorited_posts_user_path(@user.id), class: 'btn btn-primary' %>
+          </div>
           <% if current_user == @user %>
             <%= link_to 'プロフィールを編集', edit_user_registration_path, class: 'btn btn-primary mt-3' %>
           <% end %>
@@ -119,6 +122,7 @@
 
   .col-md-4 {
     width: 33.33%;
+    padding-bottom: 200px;
   }
   
   .col-md-4:nth-child(2) {
