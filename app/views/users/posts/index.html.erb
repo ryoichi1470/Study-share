@@ -1,3 +1,12 @@
+<h1 class="text-center my-0 title">投稿一覧</h1>
+
+<% if flash[:alert] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
     <div class="col-md-4 text-center fixed-left">
@@ -51,6 +60,10 @@
     color: white;
     padding: 15px 0; 
     border-radius: 5px;
+  }
+  
+  .title {
+    padding-bottom: 0px;
   }
 
   .left-image, .right-image {

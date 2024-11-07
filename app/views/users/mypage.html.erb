@@ -1,4 +1,4 @@
-<h1 class="text-center my-0">マイページ</h1>
+<h1 class="text-center my-0 title">マイページ</h1>
 
 <div class="container-fluid vh-80 d-flex flex-column justify-content-center">
   <div class="row flex-grow-1">
@@ -7,26 +7,28 @@
     </div>
 
     <div class="col-md-4">
-      <div class="user-info mt-5">
-        <h4 class="form-label">ユーザー情報</h4>
-        <div class="row">
-          <p><strong>名前:</strong> <%= @user.name %></p>
-        </div>
-        <div class="row">
-          <p><strong>メールアドレス:</strong> <%= @user.email %></p>
-        </div>
-        <div class="row">
-          <p><strong>フォロー：</strong><%= link_to @user.followings.count, users_followings_path(user_id: @user.id) %></p>
-          <p style="margin-left: 10px;"><strong>フォロワー：</strong><%= link_to @user.followers.count, users_followers_path(user_id: @user.id) %></p>
-        </div>
-        <%= link_to 'ユーザー編集', edit_user_registration_path, class: "btn btn-warning" %>
+      <div class="user-info card mt-5">
+        <div class="card-body">
+          <h4 class="form-label">ユーザー情報</h4>
+          <div class="row">
+            <p><strong>名前:</strong> <%= @user.name %></p>
+          </div>
+          <div class="row">
+            <p><strong>メールアドレス:</strong> <%= @user.email %></p>
+          </div>
+          <div class="row">
+            <p><strong>フォロー：</strong><%= link_to @user.followings.count, users_followings_path(user_id: @user.id) %></p>
+            <p style="margin-left: 10px;"><strong>フォロワー：</strong><%= link_to @user.followers.count, users_followers_path(user_id: @user.id) %></p>
+          </div>
+          <%= link_to 'ユーザー編集', edit_user_registration_path, class: "btn btn-warning" %>
 
-        <% if current_user.admin? %>
-          <h4 class="mt-4">管理者メニュー</h4>
-          <%= link_to 'コメント一覧', admin_comments_path, class: 'btn btn-primary' %>
-          <%= link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-primary' %>
-          <%= link_to 'グループ一覧', admin_groups_path, class: 'btn btn-primary' %>
-        <% end %>
+          <% if current_user.admin? %>
+            <h4 class="mt-4">管理者メニュー</h4>
+            <%= link_to 'コメント一覧', admin_comments_path, class: 'btn btn-primary' %>
+            <%= link_to 'ユーザー一覧', admin_users_path, class: 'btn btn-primary' %>
+            <%= link_to 'グループ一覧', admin_groups_path, class: 'btn btn-primary' %>
+          <% end %>
+        </div>
       </div>
 
       <div class="post-list mt-5">
@@ -63,16 +65,18 @@
   h1 {
     background-color: #001f3f;
     color: white;
+    padding: 15px 0; 
+    border-radius: 5px;
+  }
+
+  .title {
+    padding-bottom: 0px;
   }
 
   .left-image, .right-image {
     opacity: 0.3;
   }
-  
-  .row {
-    margin-left: 8px;
-  }
-  
+
   .fixed-left {
     position: fixed;
     top: 65px;
@@ -92,47 +96,24 @@
   .col-md-4 {
     width: 33.33%;
   }
-  
+
   .col-md-4:nth-child(2) {
     margin: 0 auto;
     width: 33.33%;
   }
 
   @media (max-width: 768px) {
-    .container-fluid {
-      padding: 10px;
+    .fixed-left, .fixed-right {
+      display: none;
     }
 
-    .left-image, .right-image {
-      display: none; 
+    .col-md-4:nth-child(2) {
+      width: 100%;
+      margin: 0 auto;
     }
 
     .user-info, .post-list {
       margin-top: 20px;
-    }
-
-    .row.flex-grow-1 {
-      flex-direction: column;
-    }
-
-    h1.text-center {
-      font-size: 1.5rem; 
-    }
-
-    .btn {
-      width: 100%; 
-      margin-top: 10px; 
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 992px) {
-    .col-md-4 {
-      flex: 0 0 50%; 
-      max-width: 50%;
-    }
-
-    .user-info {
-      margin-top: 40px;
     }
   }
 </style>
