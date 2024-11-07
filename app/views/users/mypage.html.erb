@@ -44,6 +44,9 @@
               </div>
             </div>
           <% end %>
+          <div class="mt-4 mb-2 d-flex justify-content-center">
+            <%= paginate @posts %>
+          </div>
         <% else %>
           <p>投稿はまだありません。</p>
         <% end %>
