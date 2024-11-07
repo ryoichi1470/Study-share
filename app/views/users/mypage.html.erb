@@ -37,8 +37,16 @@
           <% @posts.each do |post| %>
             <div class="card mb-3">
               <div class="card-body">
-                <h5 class="card-title"><%= post.title %></h5>
+                <h5 class="card-title">
+                  <%= link_to post.title, users_post_path(post) %>
+                </h5>
                 <p class="card-text"><%= post.text %></p>
+                <div id="favorite_btn_<%= post.id %>">
+                    <%= render "users/favorites/btn", post: post %>
+                  </div>
+                  <div id="comment_counter">
+                    <%= render "users/comments/counter", post: post %>
+                  </div>
                 <div class="text-end"> 
                   <%= link_to '編集', edit_users_post_path(post), class: "btn btn-warning" %>
                   <%= link_to '削除', users_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger" %>
