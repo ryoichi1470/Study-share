@@ -45,6 +45,7 @@ ja:
       timeout: セッションがタイムアウトしました。もう一度ログインしてください。
       unauthenticated: ログインもしくはアカウント登録してください。
       unconfirmed: メールアドレスの本人確認が必要です。
+      inactive_account: このアカウントは現在無効です。
     mailer:
       confirmation_instructions:
         action: メールアドレスの確認

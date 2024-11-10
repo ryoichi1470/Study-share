@@ -28,6 +28,14 @@ class User < ApplicationRecord
   def following?(user)
     active_relationships.where(followed_id: user.id).exists?
   end
+  
+  def active_for_authentication?
+    super && active?
+  end
+  
+  def inactive_message
+    active? ? super : :inactive_account
+  end
 
   
   def self.guest

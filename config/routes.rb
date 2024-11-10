@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index, :destroy]
+    resources :users, only: [:index, :destroy] do
+      member do
+        patch :toggle_active
+      end
+    end
     resources :comments, only: [:index, :destroy]
     resources :groups, only: [:index, :destroy]
   end

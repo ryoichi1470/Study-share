@@ -8,6 +8,8 @@
           <th scope="col">ID</th>
           <th scope="col">名前</th>
           <th scope="col">メールアドレス</th>
+          <th scope="col">ステータス</th>
+          <th scope="col"></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -17,6 +19,12 @@
             <td><%= user.id %></td>
             <td><%= link_to user.name, user_mypage_path(user) %></td>
             <td><%= user.email %></td>
+            <td>
+              <p>状態: <%= user.active? ? "有効" : "無効" %></p>
+            </td>
+            <td>
+              <%= link_to user.active? ? "無効にする" : "有効にする", toggle_active_admin_user_path(user), method: :patch, class: 'btn btn-warning' %>
+            </td>
             <td>
               <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-danger' %>
             </td>
@@ -61,13 +69,22 @@
     background-color: #c82333;
   }
 
+  .btn-warning {
+    background-color: #ffc107;
+    border: none;
+  }
+
+  .btn-warning:hover {
+    background-color: #e0a800;
+  }
+
   @media (max-width: 767px) {
     h1 {
       font-size: 1.5rem;
       padding: 15px;
     }
 
-    .btn-danger, .btn-secondary {
+    .btn-danger, .btn-secondary, .btn-warning {
       font-size: 0.9rem;
       padding: 8px 12px;
     }

@@ -1,0 +1,66 @@
+.main-banner {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('<%= asset_path("PK-sc01-PAR55031-j_TP_V4.jpg") %>');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  body {
+    padding-bottom: 60px; 
+  }
+
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    color: white;
+  }
+
+  .banner-title {
+    font-family: 'Pacifico', cursive;
+    color: #ffffff;
+  }
+
+  .section-info h5 {
+    color: #ffffff;
+    background-color: #343a40;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .sectin-info {
+    padding-bottom: 120px;
+    margin-bottom: 50px;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    border: none;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+  }
